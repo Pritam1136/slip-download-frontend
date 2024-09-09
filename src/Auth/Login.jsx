@@ -14,7 +14,10 @@ function Login() {
   const sendOtp = async () => {
     try {
       if (!email) throw new Error("Email is required");
-      await axios.post("http://localhost:5000/api/send-otp", { email });
+      await axios.post(
+        "https://slip-download-backend.onrender.com/api/send-otp",
+        { email },
+      );
       console.log("OTP sent successfully");
       setStep(2);
     } catch (error) {
@@ -25,7 +28,7 @@ function Login() {
   const verifyOtp = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/verify-otp",
+        "https://slip-download-backend.onrender.com/api/verify-otp",
         { email, otp },
       );
       console.log("Response after OTP verification:", response.data); // Check if token is received
@@ -44,18 +47,20 @@ function Login() {
         Login
       </h2>
       {step === 1 && (
-        <div className="flex justify-center align-middle ">
+        <div className="flex justify-center align-middle">
           <input
             type="email"
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <button className="border" onClick={sendOtp}>Send OTP</button>
+          <button className="border" onClick={sendOtp}>
+            Send OTP
+          </button>
         </div>
       )}
       {step === 2 && (
-        <div className="flex justify-center align-middle" >
+        <div className="flex justify-center align-middle">
           <input
             type="text"
             placeholder="Enter OTP"
