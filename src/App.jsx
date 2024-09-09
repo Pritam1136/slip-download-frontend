@@ -40,43 +40,6 @@ function App() {
     fetchData();
   }, []);
 
-  // const downloadPDF = () => {
-  //   const doc = new jsPDF("p", "mm", "a4");
-  //   let yPosition = 20; // Vertical position on the PDF page
-
-  //   // Add a title to the PDF
-  //   doc.setFontSize(16);
-  //   doc.text("Google Sheets Data", 14, yPosition);
-  //   yPosition += 10; // Add some space after the title
-
-  //   // Get the table data
-  //   const table = document.getElementById("table-to-pdf");
-  //   const rows = table.querySelectorAll("tr");
-
-  //   // Loop through table rows
-  //   rows.forEach((row, _rowIndex) => {
-  //     const cells = row.querySelectorAll("td, th");
-
-  //     cells.forEach((cell, cellIndex) => {
-  //       // Add each cell's text to the PDF
-  //       doc.setFontSize(12);
-  //       doc.text(cell.textContent, 14 + cellIndex * 40, yPosition); // Adjust horizontal position based on cell index
-  //     });
-
-  //     // Move to the next line in the PDF
-  //     yPosition += 10;
-
-  //     // Add new page if the content goes beyond page height
-  //     if (yPosition >= 280) {
-  //       doc.addPage();
-  //       yPosition = 20; // Reset vertical position on new page
-  //     }
-  //   });
-
-  //   // Save the PDF
-  //   doc.save("data.pdf");
-  // };
-
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
