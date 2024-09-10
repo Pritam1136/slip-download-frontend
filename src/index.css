@@ -23,9 +23,20 @@
   }
 }
 
+@keyframes moveBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
 .backgroundSVG {
   background-color: #ffffff;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='107' height='107' viewBox='0 0 200 200'%3E%3Cpolygon fill='%23DCEFFA' fill-opacity='0.68' points='100 0 0 100 100 100 100 200 200 100 200 0'/%3E%3C/svg%3E");
+  background-repeat: repeat; 
+  animation: moveBackground 100s linear infinite;
 }
 
 .inputFeild::placeholder {
