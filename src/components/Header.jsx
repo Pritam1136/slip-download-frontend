@@ -3,7 +3,7 @@ import Profile from "./Profile";
 export default function Example() {
   return (
     <header>
-      <nav className="border-gray-200 bg-white px-4 py-2.5 lg:px-6 ">
+      <nav className="border-gray-200 bg-white px-4 py-2.5 lg:px-6">
         <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between">
           <a
             href="https://www.linkedin.com/company/forwardcode-techstudio/mycompany/"
@@ -14,22 +14,19 @@ export default function Example() {
               className="mr-3 h-6 sm:h-9"
               alt="Flowbite Logo"
             />
-            <span className="self-center whitespace-nowrap text-xl font-semibold ">
+            <span className="self-center whitespace-nowrap text-xl font-semibold">
               FCTS
             </span>
           </a>
           <div className="flex items-center lg:order-2">
-            <a
-              href="#"
-              className="mr-2 rounded-lg px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-300 lg:px-5 lg:py-2.5"
-            >
+            <div className="mr-2 rounded-full px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-300 lg:px-5 lg:py-2.5">
               <Profile />
-            </a>
+            </div>
 
             <button
               data-collapse-toggle="mobile-menu-2"
               type="button"
-              className="ml-1 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 lg:hidden 400"
+              className="400 ml-1 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 lg:hidden"
               aria-controls="mobile-menu-2"
               aria-expanded="false"
             >
