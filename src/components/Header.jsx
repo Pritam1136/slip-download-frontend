@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Profile from "./Profile";
 import Sidebar from "./Sidebar"; // Import the Sidebar component
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -13,7 +14,7 @@ export default function Header() {
     <header>
       <nav className="border-gray-200 bg-white px-4 py-2.5 lg:px-6">
         <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between">
-          <a href="http://localhost:5173" className="flex items-center">
+          <Link to={"/"} className="flex items-center">
             <img
               src="https://media.licdn.com/dms/image/v2/C4D0BAQH6fJz1s57_eA/company-logo_200_200/company-logo_200_200/0/1630509348990/forwardcode_techstudio_logo?e=1733961600&v=beta&t=RgWEdt4YnKk8_oIG7LCGqhbfGeahg7QswWTmFXmcxjg"
               className="mr-3 h-6 sm:h-9"
@@ -22,7 +23,7 @@ export default function Header() {
             <span className="self-center whitespace-nowrap text-xl font-semibold">
               FCTS
             </span>
-          </a>
+          </Link>
           <div className="flex items-center lg:order-2">
             <div className="mr-2 rounded-full px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-300 lg:px-5 lg:py-2.5">
               <Profile />

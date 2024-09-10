@@ -23,7 +23,7 @@ function Login() {
     } catch (error) {
       setLoading(false);
       setError(
-        "You have'nt entered the email... If you have enterd the mail then please check your internet connection.",
+        "You have'nt entered the email... If you've  enterd the mail then please check your internet connection.",
       );
     }
   };
@@ -52,7 +52,7 @@ function Login() {
   return (
     <div className="backgroundSVG flex h-screen flex-1 flex-col justify-center px-6 py-12 align-middle lg:px-8">
       <div className="container rounded-2xl bg-white p-10 drop-shadow-2xl">
-        <div className="my-2 py-2 flex justify-center align-middle">
+        <div className="my-2 flex justify-center py-2 align-middle">
           <img
             src="https://media.licdn.com/dms/image/v2/C4D0BAQH6fJz1s57_eA/company-logo_200_200/company-logo_200_200/0/1630509348990/forwardcode_techstudio_logo?e=1733961600&v=beta&t=RgWEdt4YnKk8_oIG7LCGqhbfGeahg7QswWTmFXmcxjg"
             className="mr-3 h-6 sm:h-9"
