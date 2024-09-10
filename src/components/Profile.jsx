@@ -23,16 +23,13 @@ function Profile() {
         <div className="absolute right-0 z-10 mt-2 w-48 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
           <ul className="py-1 text-sm text-gray-700">
             <li>
-              <div className="block px-4 py-2 hover:bg-gray-100">Account</div>
+              <div className="profileMenu">Account</div>
             </li>
             <li>
-              <div className="block px-4 py-2 hover:bg-gray-100">Settings</div>
+              <div className="profileMenu">Settings</div>
             </li>
             <li>
-              <div
-                className="block px-4 py-2 text-red-600 hover:bg-gray-100"
-                onClick={logout}
-              >
+              <div className="profileMenu text-red-600" onClick={logout}>
                 Logout
               </div>
             </li>
