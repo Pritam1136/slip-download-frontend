@@ -3,6 +3,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { url } from "../URL";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -16,7 +17,7 @@ function Login() {
     try {
       setLoading(true);
       if (!email) throw new Error("Email is required");
-      await axios.post("http://localhost:5000/api/send-otp", { email });
+      await axios.post(`${url}/api/send-otp`, { email });
       setLoading(false);
       setStep(2);
     } catch (error) {
@@ -30,10 +31,10 @@ function Login() {
   const verifyOtp = async () => {
     try {
       setLoading(true);
-      const response = await axios.post(
-        "http://localhost:5000/api/verify-otp",
-        { email, otp },
-      );
+      const response = await axios.post(`${url}/api/verify-otp`, {
+        email,
+        otp,
+      });
       localStorage.setItem("authToken", response.data.token);
       setLoading(false);
       navigate("/"); // Redirect after successful login

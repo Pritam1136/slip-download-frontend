@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { url } from "./URL";
 
 function App() {
   const [data, setData] = useState([]);
@@ -9,7 +10,7 @@ function App() {
     async function fetchData() {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/sheet-data?spreadsheetId=1dztvIjzznPl_5ywIpY1RFbwWybfHdvkvXg7DfFlFhOo&sheetName=Sheet1",
+          `${url}/api/sheet-data?spreadsheetId=1dztvIjzznPl_5ywIpY1RFbwWybfHdvkvXg7DfFlFhOo&sheetName=Sheet1`,
           {
             headers: {
               // Include your auth token if required
