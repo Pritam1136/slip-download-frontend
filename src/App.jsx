@@ -14,7 +14,6 @@ function App() {
           `${url}/api/sheet-data?spreadsheetId=1dztvIjzznPl_5ywIpY1RFbwWybfHdvkvXg7DfFlFhOo&sheetName=Sheet1`,
           {
             headers: {
-              // Include your auth token if required
               Authorization: `Bearer ${localStorage.getItem("authToken")}`,
             },
           },
@@ -48,7 +47,7 @@ function App() {
   return (
     <div>
       <Header />
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:pr-8 lg:pl-72">
         <div className="sm:mx-auto sm:w-full sm:max-w-3xl">
           <h1 className="mt-10 text-center text-3xl font-bold leading-9 tracking-tight text-indigo-600">
             Google Sheets Data

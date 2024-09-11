@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Profile from "./Profile";
 import Sidebar from "./Sidebar"; // Import the Sidebar component
 import { Link } from "react-router-dom";
@@ -6,13 +6,24 @@ import { Link } from "react-router-dom";
 export default function Header() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
+  // Load sidebar state from localStorage on initial render
+  useEffect(() => {
+    const savedSidebarState = localStorage.getItem("isSidebarOpen");
+    if (savedSidebarState !== null) {
+      setSidebarOpen(JSON.parse(savedSidebarState));
+    }
+  }, []);
+
+  // Toggle sidebar and save state to localStorage
   const toggleSidebar = () => {
-    setSidebarOpen(!isSidebarOpen);
+    const newState = !isSidebarOpen;
+    setSidebarOpen(newState);
+    localStorage.setItem("isSidebarOpen", JSON.stringify(newState));
   };
 
   return (
     <header>
-      <nav className="border-gray-200 bg-white px-4 py-2.5 lg:px-6">
+      <nav className="border-gray-200 bg-white px-4 py-2.5 shadow-sm lg:px-6">
         <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between">
           <Link to={"/"} className="flex items-center">
             <img
@@ -55,7 +66,7 @@ export default function Header() {
         </div>
       </nav>
       <Sidebar isOpen={isSidebarOpen} />{" "}
-      {/* Sidebar opens or closes on small screens */}
+      {/* Sidebar toggles on small screens */}
     </header>
   );
 }
