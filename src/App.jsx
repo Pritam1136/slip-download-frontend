@@ -100,7 +100,7 @@ function App() {
                     <td className="tableData">{rowIndex + 1}</td>
                     <td className="tableData">{row[5]}</td>
                     <td className="tableData">{row[6]}</td>
-                    <td className="tableData">
+                    <td className="tableData flex justify-center align-middle">
                       <button
                         className="buttonDesign rounded bg-indigo-600 px-2 py-1 text-white"
                         onClick={() => handleDownload(row)}
