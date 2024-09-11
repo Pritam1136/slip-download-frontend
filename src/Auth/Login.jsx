@@ -83,7 +83,6 @@ function Login() {
                     id="email"
                     name="email"
                     type="email"
-                   
                     placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
