@@ -33,7 +33,7 @@ function App() {
           throw new Error("Unexpected data format");
         }
       } catch (err) {
-        setError(`You are not an emplyee....`);
+        setError(`You are not an employee....`);
       } finally {
         setLoading(false);
       }
@@ -45,6 +45,10 @@ function App() {
   const logout = () => {
     localStorage.removeItem("authToken");
     navigate("/login");
+  };
+
+  const handleDownload = (row) => {
+    console.log("Download clicked for", row);
   };
 
   if (loading) return <p className="loadingText">Loading...</p>;
@@ -73,15 +77,10 @@ function App() {
             <table className="min-w-full border-collapse border border-gray-300">
               <thead>
                 <tr className="bg-indigo-600 text-white">
-                  {data[0] &&
-                    data[0].map((header, index) => (
-                      <th
-                        key={index}
-                        className="px-4 py-2 text-left text-sm font-semibold"
-                      >
-                        {header}
-                      </th>
-                    ))}
+                  <th className="px-4 py-2 text-left text-sm font-semibold">S.No</th>
+                  <th className="px-4 py-2 text-left text-sm font-semibold">Month</th>
+                  <th className="px-4 py-2 text-left text-sm font-semibold">Year</th>
+                  <th className="px-4 py-2 text-left text-sm font-semibold">Download</th>
                 </tr>
               </thead>
               <tbody>
@@ -90,14 +89,23 @@ function App() {
                     key={rowIndex}
                     className={rowIndex % 2 === 0 ? "bg-gray-50" : "bg-white"}
                   >
-                    {row.map((cell, cellIndex) => (
-                      <td
-                        key={cellIndex}
-                        className="border-t border-gray-300 px-4 py-2 text-sm text-gray-700"
+                    <td className="border-t border-gray-300 px-4 py-2 text-sm text-gray-700">
+                      {rowIndex + 1}
+                    </td>
+                    <td className="border-t border-gray-300 px-4 py-2 text-sm text-gray-700">
+                      {row[5]} 
+                    </td>
+                    <td className="border-t border-gray-300 px-4 py-2 text-sm text-gray-700">
+                      {row[6]} 
+                    </td>
+                    <td className="border-t border-gray-300 px-4 py-2 text-sm text-gray-700">
+                      <button 
+                        className="buttonDesign px-2 py-1 bg-indigo-600 text-white rounded"
+                        onClick={() => handleDownload(row)}
                       >
-                        {cell}
-                      </td>
-                    ))}
+                        Download
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
