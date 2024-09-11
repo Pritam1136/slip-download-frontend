@@ -77,30 +77,32 @@ function App() {
             <table className="min-w-full border-collapse border border-gray-300">
               <thead>
                 <tr className="bg-indigo-600 text-white">
-                  <th className="px-4 py-2 text-left text-sm font-semibold">S.No</th>
-                  <th className="px-4 py-2 text-left text-sm font-semibold">Month</th>
-                  <th className="px-4 py-2 text-left text-sm font-semibold">Year</th>
-                  <th className="px-4 py-2 text-left text-sm font-semibold">Download</th>
+                  <th className="px-4 py-2 text-left text-sm font-semibold">
+                    S.No
+                  </th>
+                  <th className="px-4 py-2 text-left text-sm font-semibold">
+                    Month
+                  </th>
+                  <th className="px-4 py-2 text-left text-sm font-semibold">
+                    Year
+                  </th>
+                  <th className="px-4 py-2 text-left text-sm font-semibold">
+                    Download
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {data.slice(1).map((row, rowIndex) => (
                   <tr
                     key={rowIndex}
-                    className={rowIndex % 2 === 0 ? "bg-gray-50" : "bg-white"}
+                    className={rowIndex % 2 === 0 ? "bg-gray-100" : "bg-white"}
                   >
-                    <td className="border-t border-gray-300 px-4 py-2 text-sm text-gray-700">
-                      {rowIndex + 1}
-                    </td>
-                    <td className="border-t border-gray-300 px-4 py-2 text-sm text-gray-700">
-                      {row[5]} 
-                    </td>
-                    <td className="border-t border-gray-300 px-4 py-2 text-sm text-gray-700">
-                      {row[6]} 
-                    </td>
-                    <td className="border-t border-gray-300 px-4 py-2 text-sm text-gray-700">
-                      <button 
-                        className="buttonDesign px-2 py-1 bg-indigo-600 text-white rounded"
+                    <td className="tableData">{rowIndex + 1}</td>
+                    <td className="tableData">{row[5]}</td>
+                    <td className="tableData">{row[6]}</td>
+                    <td className="tableData">
+                      <button
+                        className="buttonDesign rounded bg-indigo-600 px-2 py-1 text-white"
                         onClick={() => handleDownload(row)}
                       >
                         Download
