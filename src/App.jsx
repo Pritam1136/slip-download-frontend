@@ -1,11 +1,15 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import { url } from "./URL";
 import Header from "./components/Header";
+import { useNavigate } from "react-router-dom";
 
 function App() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -32,7 +36,7 @@ function App() {
           throw new Error("Unexpected data format");
         }
       } catch (err) {
-        setError(`Error fetching data: ${err.message}`);
+        setError(`You are not an emplyee....`);
       } finally {
         setLoading(false);
       }
@@ -41,13 +45,28 @@ function App() {
     fetchData();
   }, []);
 
+  const logout = () => {
+    localStorage.removeItem("authToken");
+    navigate("/login");
+  };
+
   if (loading) return <p className="loadingText">Loading...</p>;
-  if (error) return <p className="loadingText">{error}</p>;
+  if (error)
+    return (
+      <p className="loadingText">
+        {error}
+        <div className="w-full flex justify-center align-middle pt-6">
+          <button className="buttonDesign max-w-20" onClick={logout}>
+            Logout
+          </button>
+        </div>
+      </p>
+    );
 
   return (
     <div>
       <Header />
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:pr-8 lg:pl-72">
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:pl-72 lg:pr-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-3xl">
           <h1 className="mt-10 text-center text-3xl font-bold leading-9 tracking-tight text-indigo-600">
             Google Sheets Data

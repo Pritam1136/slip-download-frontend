@@ -3,7 +3,7 @@
 function Sidebar({ isOpen }) {
   return (
     <div
-      className={`fixed left-0 top-0 mt-[72px] h-full w-64 bg-[#D1E9F6] p-4 transition-transform duration-300 lg:mt-[78px] ${
+      className={`fixed left-0 top-0 mt-[74px] h-full w-64 bg-[#fff] p-4 transition-transform duration-300 lg:mt-[78px] shadow-2xl ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       } lg:block lg:translate-x-0`}
     >
