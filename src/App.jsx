@@ -14,14 +14,11 @@ function App() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(
-          `${url}/api/sheet-data?spreadsheetId=1dztvIjzznPl_5ywIpY1RFbwWybfHdvkvXg7DfFlFhOo&sheetName=Sheet1`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-            },
+        const response = await fetch(`${url}/api/sheet-data`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
           },
-        );
+        });
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -55,7 +52,7 @@ function App() {
     return (
       <p className="loadingText">
         {error}
-        <div className="w-full flex justify-center align-middle pt-6">
+        <div className="flex w-full justify-center pt-6 align-middle">
           <button className="buttonDesign max-w-20" onClick={logout}>
             Logout
           </button>
