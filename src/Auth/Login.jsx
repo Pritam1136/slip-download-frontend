@@ -40,7 +40,7 @@ function Login() {
       navigate("/"); // Redirect after successful login
     } catch (error) {
       setLoading(false);
-      setError("Invalid OTP");
+      setError(error.response.data.message);
     }
   };
 
