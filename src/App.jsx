@@ -53,7 +53,7 @@ function App() {
     return (
       <PDFDownloadLink
         document={<MyPDF data={[row]} />}
-        fileName={`SheetData_${row[5]}_${row[6]}.pdf`}
+        fileName={`PaySlip_${row[5]}_${row[6]}.pdf`}
       >
         {({ loading }) => (loading ? "Preparing PDF..." : "Download")}
       </PDFDownloadLink>
@@ -79,7 +79,7 @@ function App() {
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:pl-72 lg:pr-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-3xl">
           <h1 className="mt-10 text-center text-3xl font-bold leading-9 tracking-tight text-indigo-600">
-            Google Sheets Data
+            SlipStream
           </h1>
 
           <div className="mt-8 overflow-x-auto">

@@ -1,32 +1,11 @@
-/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
+/* eslint-disable react/no-unescaped-entities */
 import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({
   page: {
     backgroundColor: "#E4E4E4",
     padding: 20,
-  },
-  table: {
-    display: "table",
-    width: "auto",
-    margin: "10px 0",
-  },
-  tableRow: {
-    flexDirection: "row",
-  },
-  tableCol: {
-    width: "33.33%",
-    borderStyle: "solid",
-    borderWidth: 1,
-    borderColor: "#000",
-    padding: 5,
-  },
-  tableCellHeader: {
-    fontWeight: "bold",
-  },
-  tableCell: {
-    fontSize: 10,
   },
   sectionTitle: {
     fontSize: 16,
@@ -40,16 +19,38 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "semibold",
   },
-  month: {
-    fontSize: 16,
-    marginTop: 10,
-    marginBottom: 10,
-    textAlign: "center",
+  table: {
+    display: "table",
+    width: "auto",
+    margin: "10px 0",
+  },
+  tableRow: {
+    flexDirection: "row",
+  },
+  tableCol: {
+    width: "50%",
+    borderStyle: "solid",
+    borderWidth: 1,
+    borderColor: "#000",
+    padding: 5,
+  },
+  tableCellHeader: {
     fontWeight: "bold",
+    fontSize: 12,
+  },
+  tableCell: {
+    fontSize: 10,
+  },
+  footerText: {
+    fontSize: 8,
+    marginTop: 10,
+    textAlign: "center",
   },
 });
 
 const MyPDF = ({ data }) => {
+  const [row] = data;
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -57,40 +58,89 @@ const MyPDF = ({ data }) => {
           FORWARDCODE TECHSTUDIO PRIVATE LIMITED
         </Text>
         <Text style={styles.sectionParagraph}>
-          75, Line No. 5, Hirasingh Bagan, Kasidih, Jamshedpur, Jharkhand -
-          831001
+          75, Line No. 5, Hirasingh Bagan, Kasidih, Jamshedpur, Jharkhand - 831001
         </Text>
 
-        {/* <Text style={styles.month}>
-          Pay Slip 
-        </Text> */}
+        <Text style={styles.sectionTitle}>
+          Pay Slip for {row[5]} - {row[6]}
+        </Text>
 
-        {/* Table Header */}
+        {/* Employee Details */}
         <View style={styles.table}>
           <View style={styles.tableRow}>
-            <View style={[styles.tableCol, styles.tableCellHeader]}>
-              <Text>Month</Text>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCellHeader}>Employee Name:</Text>
+              <Text style={styles.tableCell}>XXXXXX XXXXXXX</Text>
             </View>
-            <View style={[styles.tableCol, styles.tableCellHeader]}>
-              <Text>Year</Text>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCellHeader}>Designation:</Text>
+              <Text style={styles.tableCell}>Trainee Software Engineer</Text>
             </View>
           </View>
-
-          {/* Table Data */}
-          {data.map((row, index) => (
-            <View key={index} style={styles.tableRow}>
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>{row[5]}</Text>
-              </View>
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>{row[6]}</Text>
-              </View>
+          <View style={styles.tableRow}>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCellHeader}>Employee ID:</Text>
+              <Text style={styles.tableCell}>MMYYYY-00XX</Text>
             </View>
-          ))}
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCellHeader}>Department:</Text>
+              <Text style={styles.tableCell}>N/A</Text>
+            </View>
+          </View>
         </View>
-        <Text style={styles.sectionParagraph}>
-          "This is a computer generated payslip, hence no signature is
-          required."
+
+        {/* Earnings and Deductions */}
+        <Text style={styles.sectionTitle}>Earnings</Text>
+        <View style={styles.table}>
+          <View style={styles.tableRow}>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCellHeader}>Basic</Text>
+              <Text style={styles.tableCell}>₹8160.00</Text>
+            </View>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCellHeader}>HRA</Text>
+              <Text style={styles.tableCell}>₹3200.00</Text>
+            </View>
+          </View>
+          <View style={styles.tableRow}>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCellHeader}>Other Allowances</Text>
+              <Text style={styles.tableCell}>₹4640.00</Text>
+            </View>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCellHeader}>Total Earnings</Text>
+              <Text style={styles.tableCell}>₹16000.00</Text>
+            </View>
+          </View>
+        </View>
+
+        <Text style={styles.sectionTitle}>Deductions</Text>
+        <View style={styles.table}>
+          <View style={styles.tableRow}>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCellHeader}>EPF</Text>
+              <Text style={styles.tableCell}>₹0.00</Text>
+            </View>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCellHeader}>Professional Tax</Text>
+              <Text style={styles.tableCell}>₹0.00</Text>
+            </View>
+          </View>
+          <View style={styles.tableRow}>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCellHeader}>Health Insurance/ESI</Text>
+              <Text style={styles.tableCell}>₹0.00</Text>
+            </View>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCellHeader}>TDS</Text>
+              <Text style={styles.tableCell}>₹0.00</Text>
+            </View>
+          </View>
+        </View>
+
+        {/* Footer */}
+        <Text style={styles.footerText}>
+          "This is a computer-generated payslip, hence no signature is required."
         </Text>
       </Page>
     </Document>
