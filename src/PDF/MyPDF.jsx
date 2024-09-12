@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   tableCol: {
-    width: "50%",
+    width: "25%",
     borderStyle: "solid",
     borderWidth: 1,
     borderColor: "#000",
@@ -58,7 +58,8 @@ const MyPDF = ({ data }) => {
           FORWARDCODE TECHSTUDIO PRIVATE LIMITED
         </Text>
         <Text style={styles.sectionParagraph}>
-          75, Line No. 5, Hirasingh Bagan, Kasidih, Jamshedpur, Jharkhand - 831001
+          75, Line No. 5, Hirasingh Bagan, Kasidih, Jamshedpur, Jharkhand
+          -831001
         </Text>
 
         <Text style={styles.sectionTitle}>
@@ -70,11 +71,18 @@ const MyPDF = ({ data }) => {
           <View style={styles.tableRow}>
             <View style={styles.tableCol}>
               <Text style={styles.tableCellHeader}>Employee Name:</Text>
-              <Text style={styles.tableCell}>XXXXXX XXXXXXX</Text>
             </View>
             <View style={styles.tableCol}>
+              <Text style={styles.tableCellHeader}>XXXXXX XXXXXXX</Text>
+            </View>
+
+            <View style={styles.tableCol}>
               <Text style={styles.tableCellHeader}>Designation:</Text>
-              <Text style={styles.tableCell}>Trainee Software Engineer</Text>
+            </View>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableCellHeader}>
+                Trainee Software Engineer
+              </Text>
             </View>
           </View>
           <View style={styles.tableRow}>
@@ -83,7 +91,12 @@ const MyPDF = ({ data }) => {
               <Text style={styles.tableCell}>MMYYYY-00XX</Text>
             </View>
             <View style={styles.tableCol}>
+              <Text style={styles.tableCell}>MMYYYY-00XX</Text>
+            </View>
+            <View style={styles.tableCol}>
               <Text style={styles.tableCellHeader}>Department:</Text>
+            </View>
+            <View style={styles.tableCol}>
               <Text style={styles.tableCell}>N/A</Text>
             </View>
           </View>
@@ -95,20 +108,28 @@ const MyPDF = ({ data }) => {
           <View style={styles.tableRow}>
             <View style={styles.tableCol}>
               <Text style={styles.tableCellHeader}>Basic</Text>
+            </View>
+            <View style={styles.tableCol}>
               <Text style={styles.tableCell}>₹8160.00</Text>
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCellHeader}>HRA</Text>
+            </View>
+            <View style={styles.tableCol}>
               <Text style={styles.tableCell}>₹3200.00</Text>
             </View>
           </View>
           <View style={styles.tableRow}>
             <View style={styles.tableCol}>
               <Text style={styles.tableCellHeader}>Other Allowances</Text>
+            </View>
+            <View style={styles.tableCol}>
               <Text style={styles.tableCell}>₹4640.00</Text>
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCellHeader}>Total Earnings</Text>
+            </View>
+            <View style={styles.tableCol}>
               <Text style={styles.tableCell}>₹16000.00</Text>
             </View>
           </View>
@@ -119,20 +140,28 @@ const MyPDF = ({ data }) => {
           <View style={styles.tableRow}>
             <View style={styles.tableCol}>
               <Text style={styles.tableCellHeader}>EPF</Text>
+            </View>
+            <View style={styles.tableCol}>
               <Text style={styles.tableCell}>₹0.00</Text>
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCellHeader}>Professional Tax</Text>
+            </View>
+            <View style={styles.tableCol}>
               <Text style={styles.tableCell}>₹0.00</Text>
             </View>
           </View>
           <View style={styles.tableRow}>
             <View style={styles.tableCol}>
               <Text style={styles.tableCellHeader}>Health Insurance/ESI</Text>
+            </View>
+            <View style={styles.tableCol}>
               <Text style={styles.tableCell}>₹0.00</Text>
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCellHeader}>TDS</Text>
+            </View>
+            <View style={styles.tableCol}>
               <Text style={styles.tableCell}>₹0.00</Text>
             </View>
           </View>
@@ -140,7 +169,8 @@ const MyPDF = ({ data }) => {
 
         {/* Footer */}
         <Text style={styles.footerText}>
-          "This is a computer-generated payslip, hence no signature is required."
+          "This is a computer-generated payslip, hence no signature is
+          required."
         </Text>
       </Page>
     </Document>
