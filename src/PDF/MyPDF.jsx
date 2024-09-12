@@ -43,8 +43,14 @@ const styles = StyleSheet.create({
   },
   footerText: {
     fontSize: 8,
+    marginTop: 6,
+    textAlign: "left",
+  },
+  note: {
+    fontWeight: "bold",
+    fontSize: 8,
     marginTop: 10,
-    textAlign: "center",
+    textAlign: "left",
   },
 });
 
@@ -110,13 +116,13 @@ const MyPDF = ({ data }) => {
               <Text style={styles.tableCellHeader}>Basic</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>₹8160.00</Text>
+              <Text style={styles.tableCell}>8160.00</Text>
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCellHeader}>HRA</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>₹3200.00</Text>
+              <Text style={styles.tableCell}>3200.00</Text>
             </View>
           </View>
           <View style={styles.tableRow}>
@@ -124,13 +130,13 @@ const MyPDF = ({ data }) => {
               <Text style={styles.tableCellHeader}>Other Allowances</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>₹4640.00</Text>
+              <Text style={styles.tableCell}>4640.00</Text>
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCellHeader}>Total Earnings</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>₹16000.00</Text>
+              <Text style={styles.tableCell}>16000.00</Text>
             </View>
           </View>
         </View>
@@ -142,13 +148,13 @@ const MyPDF = ({ data }) => {
               <Text style={styles.tableCellHeader}>EPF</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>₹0.00</Text>
+              <Text style={styles.tableCell}>0.00</Text>
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCellHeader}>Professional Tax</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>₹0.00</Text>
+              <Text style={styles.tableCell}>0.00</Text>
             </View>
           </View>
           <View style={styles.tableRow}>
@@ -156,21 +162,21 @@ const MyPDF = ({ data }) => {
               <Text style={styles.tableCellHeader}>Health Insurance/ESI</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>₹0.00</Text>
+              <Text style={styles.tableCell}>0.00</Text>
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCellHeader}>TDS</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>₹0.00</Text>
+              <Text style={styles.tableCell}>0.00</Text>
             </View>
           </View>
         </View>
 
         {/* Footer */}
+        <Text style={styles.note}>Note:</Text>
         <Text style={styles.footerText}>
-          "This is a computer-generated payslip, hence no signature is
-          required."
+          "This is a computer-generated payslip, hence no signature required."
         </Text>
       </Page>
     </Document>
