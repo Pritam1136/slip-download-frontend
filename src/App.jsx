@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { url } from "./URL";
 import Header from "./components/Header";
 import { useNavigate } from "react-router-dom";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import MyPDF from "./PDF/MyPDF";
 
 function App() {
   const [data, setData] = useState([]);
@@ -48,7 +50,15 @@ function App() {
   };
 
   const handleDownload = (rowIndex, row) => {
-    console.log(`Download clicked for ${rowIndex + 1}`, row);
+    
+    return (
+      <PDFDownloadLink
+        document={<MyPDF data={[row]} />}
+        fileName={`SheetData_${row[5]}_${row[6]}.pdf`}
+      >
+        {({ loading }) => (loading ? "Preparing PDF..." : "Download")}
+      </PDFDownloadLink>
+    );
   };
 
   if (loading) return <p className="loadingText">Loading...</p>;
@@ -77,18 +87,10 @@ function App() {
             <table className="min-w-full border-collapse border border-gray-300">
               <thead>
                 <tr className="bg-indigo-600 text-white">
-                  <th className="px-4 py-2 text-left text-sm font-semibold">
-                    S.No
-                  </th>
-                  <th className="px-4 py-2 text-left text-sm font-semibold">
-                    Month
-                  </th>
-                  <th className="px-4 py-2 text-left text-sm font-semibold">
-                    Year
-                  </th>
-                  <th className="px-4 py-2 text-left text-sm font-semibold">
-                    Download
-                  </th>
+                  <th className="tableHead">S.No</th>
+                  <th className="tableHead">Month</th>
+                  <th className="tableHead">Year</th>
+                  <th className="tableHead">Download</th>
                 </tr>
               </thead>
               <tbody>
@@ -101,12 +103,7 @@ function App() {
                     <td className="tableData">{row[5]}</td>
                     <td className="tableData">{row[6]}</td>
                     <td className="tableData flex justify-center align-middle">
-                      <button
-                        className="buttonDesign rounded bg-indigo-600 px-2 py-1 text-white"
-                        onClick={() => handleDownload(rowIndex, row)}
-                      >
-                        Download
-                      </button>
+                      {handleDownload(rowIndex, row)}
                     </td>
                   </tr>
                 ))}
