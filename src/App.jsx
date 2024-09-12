@@ -50,7 +50,6 @@ function App() {
   };
 
   const handleDownload = (rowIndex, row) => {
-    
     return (
       <PDFDownloadLink
         document={<MyPDF data={[row]} />}

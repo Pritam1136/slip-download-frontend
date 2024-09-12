@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
 import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
 
@@ -29,6 +30,19 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 16,
+    marginBottom: 6,
+    textAlign: "center",
+    fontWeight: "bold",
+  },
+  sectionParagraph: {
+    fontSize: 10,
+    marginBottom: 10,
+    textAlign: "center",
+    fontWeight: "semibold",
+  },
+  month: {
+    fontSize: 16,
+    marginTop: 10,
     marginBottom: 10,
     textAlign: "center",
     fontWeight: "bold",
@@ -39,7 +53,17 @@ const MyPDF = ({ data }) => {
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        <Text style={styles.sectionTitle}>Google Sheets Data</Text>
+        <Text style={styles.sectionTitle}>
+          FORWARDCODE TECHSTUDIO PRIVATE LIMITED
+        </Text>
+        <Text style={styles.sectionParagraph}>
+          75, Line No. 5, Hirasingh Bagan, Kasidih, Jamshedpur, Jharkhand -
+          831001
+        </Text>
+
+        {/* <Text style={styles.month}>
+          Pay Slip 
+        </Text> */}
 
         {/* Table Header */}
         <View style={styles.table}>
@@ -64,6 +88,10 @@ const MyPDF = ({ data }) => {
             </View>
           ))}
         </View>
+        <Text style={styles.sectionParagraph}>
+          "This is a computer generated payslip, hence no signature is
+          required."
+        </Text>
       </Page>
     </Document>
   );
