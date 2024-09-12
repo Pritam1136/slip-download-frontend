@@ -5,8 +5,6 @@ import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Auth/Login.jsx";
 import PrivateRoute from "./RouteProtector/PrivateRoute.jsx";
-// import { Context } from "./Context/Context.js";
-// import PrivateRoute from "./RouteProtector/PrivateRoute.jsx"; // Import the PrivateRoute component
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

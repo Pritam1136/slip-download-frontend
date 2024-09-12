@@ -47,8 +47,8 @@ function App() {
     navigate("/login");
   };
 
-  const handleDownload = (row) => {
-    console.log("Download clicked for", row);
+  const handleDownload = (rowIndex, row) => {
+    console.log(`Download clicked for ${rowIndex + 1}`, row);
   };
 
   if (loading) return <p className="loadingText">Loading...</p>;
@@ -103,7 +103,7 @@ function App() {
                     <td className="tableData flex justify-center align-middle">
                       <button
                         className="buttonDesign rounded bg-indigo-600 px-2 py-1 text-white"
-                        onClick={() => handleDownload(row)}
+                        onClick={() => handleDownload(rowIndex, row)}
                       >
                         Download
                       </button>
