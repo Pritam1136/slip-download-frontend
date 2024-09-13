@@ -1,245 +1,284 @@
-/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
-import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
+/* eslint-disable no-unused-vars */
+import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
 
+// Custom styles for the PDF layout
 const styles = StyleSheet.create({
   page: {
-    backgroundColor: "#fff",
-    padding: 30,
+    padding: 60,
+    fontSize: 10,
+    backgroundColor: "white",
   },
-  sectionTitle: {
-    fontSize: 12,
-    marginBottom: 6,
+  header: {
     textAlign: "center",
-    fontWeight: "bold",
+    marginBottom: 20,
   },
-  sectionParagraph: {
-    fontSize: 9,
-    marginBottom: 5,
-    textAlign: "center",
+  boldText: {
+    fontWeight: "900",
   },
   table: {
     display: "table",
     width: "auto",
-    marginTop: 15,
-    marginBottom: 15,
+    marginBottom: 10,
   },
   tableRow: {
     flexDirection: "row",
   },
-  tableCol: {
-    width: "25%",
+  tableCell: {
+    flex: 1,
+    padding: 5,
     borderStyle: "solid",
     borderWidth: 1,
-    borderColor: "#000",
+    textAlign: "left",
+  },
+  footerNote: {
+    marginTop: 20,
+    fontSize: 8,
+    textAlign: "center",
+  },
+  sectionTitle: {
     padding: 5,
-  },
-  tableCellHeader: {
     fontWeight: "bold",
-    fontSize: 10,
-  },
-  tableCell: {
-    fontSize: 9,
-  },
-  note: {
-    fontWeight: "bold",
-    fontSize: 8,
-    marginTop: 15,
-  },
-  footerText: {
-    fontSize: 8,
-    marginTop: 5,
-  },
-  netPayText: {
-    fontSize: 9,
-    marginTop: 10,
-    fontWeight: "bold",
+    borderWidth: 1,
+    borderStyle: "solid",
   },
 });
 
 const MyPDF = ({ data }) => {
-  const [row] = data;
   return (
-    <Document>
-      <Page size="LETTER" style={styles.page}>
-        {/* Company Info */}
-        <Text style={styles.sectionTitle}>
-          FORWARDCODE TECHSTUDIO PRIVATE LIMITED
-        </Text>
-        <Text style={styles.sectionParagraph}>
-          75, Line No. 5, Hirasingh Bagan, Kasidih, Jamshedpur, Jharkhand
-          -831001
-        </Text>
-
-        {/* Pay Slip Title */}
-        <Text style={styles.sectionTitle}>
-          Pay Slip for {row[1]} - {row[2]}
-        </Text>
-
-        {/* Employee Details */}
+    <Document style={styles.table}>
+      <Page size={"LETTER"} style={styles.page}>
+        <View style={styles.header}>
+          <Text style={styles.boldText}>
+            FORWARDCODE TECHSTUDIO PRIVATE LIMITED
+          </Text>
+          <Text>
+            75, Line No. 5, Hirasingh Bagan, Kasidih, Jamshedpur, Jharkhand -
+            831001
+          </Text>
+          <Text>Pay Slip for Jul - 2023</Text>
+        </View>
         <View style={styles.table}>
           <View style={styles.tableRow}>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCellHeader}>Employee Name:</Text>
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>Employee Name</Text>
             </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{row[3]}</Text>
+
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>XXXXXX XXXXXXX</Text>
             </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCellHeader}>Designation:</Text>
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>Employee ID</Text>
             </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{row[4]}</Text>
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>MMYYYY-00XX</Text>
+            </View>
+          </View>
+
+          <View style={styles.tableRow}>
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>Date of Joining</Text>
+            </View>
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>DD-MM-YYYY</Text>
+            </View>
+
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>UAN</Text>
+            </View>
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>XXXXXXXXXX</Text>
             </View>
           </View>
           <View style={styles.tableRow}>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCellHeader}>Employee ID:</Text>
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>Date of Joining</Text>
             </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{row[0]}</Text>
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>DD-MM-YYYY</Text>
             </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCellHeader}>Department:</Text>
+
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>UAN</Text>
             </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{row[5]}</Text>
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>XXXXXXXXXX</Text>
+            </View>
+          </View>
+          <View style={styles.tableRow}>
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>Date of Joining</Text>
+            </View>
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>DD-MM-YYYY</Text>
+            </View>
+
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>UAN</Text>
+            </View>
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>XXXXXXXXXX</Text>
+            </View>
+          </View>
+          <View style={styles.tableRow}>
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>Date of Joining</Text>
+            </View>
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>DD-MM-YYYY</Text>
+            </View>
+
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>UAN</Text>
+            </View>
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>XXXXXXXXXX</Text>
+            </View>
+          </View>
+          <View style={styles.tableRow}>
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>Bank Name</Text>
+            </View>
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>HDFC</Text>
+            </View>
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>Bank A/c No.</Text>
+            </View>
+            <View style={styles.tableCell}>
+              <Text style={styles.boldText}>XXX006412XXXXX</Text>
             </View>
           </View>
         </View>
 
-        {/* Earnings Section */}
-        <Text style={styles.sectionTitle}>Earnings</Text>
+        {/* Earnings and Deductions */}
         <View style={styles.table}>
           <View style={styles.tableRow}>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCellHeader}>Basic</Text>
+            <View style={{ flex: 1 }}>
+              <Text style={[styles.sectionTitle, { textAlign: "center" }]}>
+                Earnings
+              </Text>
             </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{row[14]}</Text>
-            </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCellHeader}>HRA</Text>
-            </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{row[15]}</Text>
+            <View style={{ flex: 1 }}>
+              <Text style={[styles.sectionTitle, { textAlign: "center" }]}>
+                Deductions
+              </Text>
             </View>
           </View>
+
           <View style={styles.tableRow}>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCellHeader}>Other Allowances</Text>
+            <View style={styles.tableCell}>
+              <Text style={[{ textAlign: "left" }]}>Basic</Text>
             </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{row[16]}</Text>
+            <View style={styles.tableCell}>
+              <Text style={[{ textAlign: "right" }]}>16000.00</Text>
             </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCellHeader}>Total Working days</Text>
+            <View style={styles.tableCell}>
+              <Text style={[{ textAlign: "left" }]}>EPF</Text>
             </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{row[8]}</Text>
+            <View style={styles.tableCell}>
+              <Text style={[{ textAlign: "right" }]}>0.00</Text>
+            </View>
+          </View>
+
+          <View style={styles.tableRow}>
+            <View style={styles.tableCell}>
+              <Text style={[{ textAlign: "left" }]}>HRA</Text>
+            </View>
+            <View style={styles.tableCell}>
+              <Text style={[{ textAlign: "right" }]}>3200</Text>
+            </View>
+            <View style={styles.tableCell}>
+              <Text style={[{ textAlign: "left" }]}>Professional Tax</Text>
+            </View>
+            <View style={styles.tableCell}>
+              <Text style={[{ textAlign: "right" }]}>0.00</Text>
+            </View>
+          </View>
+
+          <View style={styles.tableRow}>
+            <View style={styles.tableCell}>
+              <Text style={[{ textAlign: "left" }]}>Other Allowances</Text>
+            </View>
+            <View style={styles.tableCell}>
+              <Text style={[{ textAlign: "right" }]}>8160.00</Text>
+            </View>
+            <View style={styles.tableCell}>
+              <Text style={[{ textAlign: "left" }]}>Health Insurance/ESI</Text>
+            </View>
+            <View style={styles.tableCell}>
+              <Text style={[{ textAlign: "right" }]}>0.00</Text>
+            </View>
+          </View>
+
+          <View style={styles.tableRow}>
+            <View style={styles.tableCell}>
+              <Text style={[{ textAlign: "left" }]}>Gross Salary</Text>
+            </View>
+            <View style={styles.tableCell}>
+              <Text style={[{ textAlign: "right" }]}>16000.00</Text>
+            </View>
+            <View style={styles.tableCell}>
+              <Text style={[{ textAlign: "left" }]}>TDS</Text>
+            </View>
+            <View style={styles.tableCell}>
+              <Text style={[{ textAlign: "right" }]}>0.00</Text>
+            </View>
+          </View>
+
+          <View style={styles.tableRow}>
+            <View style={styles.tableCell}>
+              <Text style={[{ textAlign: "left" }]}>Net Pay</Text>
+            </View>
+            <View style={styles.tableCell}>
+              <Text style={[{ textAlign: "right" }]}>16000.00</Text>
+            </View>
+            <View style={styles.tableCell}>
+              <Text style={[{ textAlign: "left" }]}>Total Deductions</Text>
+            </View>
+            <View style={styles.tableCell}>
+              <Text style={[{ textAlign: "right" }]}>0.00</Text>
             </View>
           </View>
         </View>
 
-        {/* Deductions Section */}
-        <Text style={styles.sectionTitle}>Deductions</Text>
+        {/* Other Information */}
         <View style={styles.table}>
           <View style={styles.tableRow}>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCellHeader}>EPF</Text>
+            <View style={styles.tableCell}>
+              <Text>Reimbursement</Text>
             </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{row[17]}</Text>
-            </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCellHeader}>Professional Tax</Text>
-            </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{row[18]}</Text>
+            <View style={styles.tableCell}>
+              <Text>0.00</Text>
             </View>
           </View>
+
           <View style={styles.tableRow}>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCellHeader}>Health Insurance/ESI</Text>
+            <View style={styles.tableCell}>
+              <Text>Amount in Words</Text>
             </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{row[20]}</Text>
+            <View style={styles.tableCell}>
+              <Text>Sixteen Thousand Only</Text>
             </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCellHeader}>TDS</Text>
+          </View>
+
+          <View style={styles.tableRow}>
+            <View style={styles.tableCell}>
+              <Text>Mode of Payment</Text>
             </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{row[20]}</Text>
+            <View style={styles.tableCell}>
+              <Text>Bank Transfer</Text>
             </View>
           </View>
         </View>
 
-        {/* Net Pay and Bank Details */}
-        <View style={styles.table}>
-          <View style={styles.tableRow}>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCellHeader}>Gross Salary</Text>
-            </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{row[21]}</Text>
-            </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCellHeader}>Net Pay</Text>
-            </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{row[23]}</Text>
-            </View>
-          </View>
+        {/* Footer Note */}
+        <View style={styles.footerNote}>
+          <Text>
+            This is a computer generated payslip, hence no signature is
+            required.
+          </Text>
         </View>
-
-        <View style={styles.table}>
-          <View style={styles.tableRow}>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCellHeader}>HAR</Text>
-            </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{row[15]}</Text>
-            </View>
-          </View>
-        </View>
-
-        {/* Net Pay in Words */}
-        <Text style={styles.netPayText}>
-          Net Pay (In words): Sixteen Thousand Only
-        </Text>
-
-        {/* Additional Info */}
-        <View style={styles.table}>
-          <View style={styles.tableRow}>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCellHeader}>Bank Name</Text>
-            </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{row[11]}</Text>
-            </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCellHeader}>Bank A/c No.</Text>
-            </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{row[12]}</Text>
-            </View>
-          </View>
-          <View style={styles.tableRow}>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCellHeader}>PAN No.</Text>
-            </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>{row[13]}</Text>
-            </View>
-          </View>
-        </View>
-
-        {/* Footer */}
-        <Text style={styles.note}>Note:</Text>
-        <Text style={styles.footerText}>
-          "This is a computer-generated payslip, hence no signature is
-          required."
-        </Text>
       </Page>
     </Document>
   );
