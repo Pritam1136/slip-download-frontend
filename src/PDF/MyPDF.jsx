@@ -275,7 +275,8 @@ const MyPDF = ({ data }) => {
         </View>
 
         {/* Footer Note */}
-        <View style={styles.footerNote}>
+        <View style={[styles.footerNote, { textAlign: "left" }]}>
+          <Text style={[{ fontWeight: "heavy", fontSize: "10px" }]}>Note:</Text>
           <Text>
             This is a computer generated payslip, hence no signature is
             required.
