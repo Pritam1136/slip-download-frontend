@@ -61,7 +61,7 @@ const MyPDF = ({ data }) => {
   const [row] = data;
   return (
     <Document>
-      <Page size="A4" style={styles.page}>
+      <Page size="LETTER" style={styles.page}>
         {/* Company Info */}
         <Text style={styles.sectionTitle}>
           FORWARDCODE TECHSTUDIO PRIVATE LIMITED
@@ -73,7 +73,7 @@ const MyPDF = ({ data }) => {
 
         {/* Pay Slip Title */}
         <Text style={styles.sectionTitle}>
-          Pay Slip for {row[5]} - {row[6]}
+          Pay Slip for {row[1]} - {row[2]}
         </Text>
 
         {/* Employee Details */}
@@ -83,13 +83,13 @@ const MyPDF = ({ data }) => {
               <Text style={styles.tableCellHeader}>Employee Name:</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>XXXXXX XXXXXXX</Text>
+              <Text style={styles.tableCell}>{row[3]}</Text>
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCellHeader}>Designation:</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>Trainee Software Engineer</Text>
+              <Text style={styles.tableCell}>{row[4]}</Text>
             </View>
           </View>
           <View style={styles.tableRow}>
@@ -97,13 +97,13 @@ const MyPDF = ({ data }) => {
               <Text style={styles.tableCellHeader}>Employee ID:</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>MMYYYY-00XX</Text>
+              <Text style={styles.tableCell}>{row[0]}</Text>
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCellHeader}>Department:</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>N/A</Text>
+              <Text style={styles.tableCell}>{row[5]}</Text>
             </View>
           </View>
         </View>
@@ -116,13 +116,13 @@ const MyPDF = ({ data }) => {
               <Text style={styles.tableCellHeader}>Basic</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>₹8160.00</Text>
+              <Text style={styles.tableCell}>{row[14]}</Text>
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCellHeader}>HRA</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>₹3200.00</Text>
+              <Text style={styles.tableCell}>{row[15]}</Text>
             </View>
           </View>
           <View style={styles.tableRow}>
@@ -130,13 +130,13 @@ const MyPDF = ({ data }) => {
               <Text style={styles.tableCellHeader}>Other Allowances</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>₹4640.00</Text>
+              <Text style={styles.tableCell}>{row[16]}</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCellHeader}>Total Earnings</Text>
+              <Text style={styles.tableCellHeader}>Total Working days</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>₹16000.00</Text>
+              <Text style={styles.tableCell}>{row[8]}</Text>
             </View>
           </View>
         </View>
@@ -149,13 +149,13 @@ const MyPDF = ({ data }) => {
               <Text style={styles.tableCellHeader}>EPF</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>₹0.00</Text>
+              <Text style={styles.tableCell}>{row[17]}</Text>
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCellHeader}>Professional Tax</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>₹0.00</Text>
+              <Text style={styles.tableCell}>{row[18]}</Text>
             </View>
           </View>
           <View style={styles.tableRow}>
@@ -163,13 +163,13 @@ const MyPDF = ({ data }) => {
               <Text style={styles.tableCellHeader}>Health Insurance/ESI</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>₹0.00</Text>
+              <Text style={styles.tableCell}>{row[20]}</Text>
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCellHeader}>TDS</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>₹0.00</Text>
+              <Text style={styles.tableCell}>{row[20]}</Text>
             </View>
           </View>
         </View>
@@ -181,13 +181,13 @@ const MyPDF = ({ data }) => {
               <Text style={styles.tableCellHeader}>Gross Salary</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>₹16000.00</Text>
+              <Text style={styles.tableCell}>{row[21]}</Text>
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCellHeader}>Net Pay</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>₹16000.00</Text>
+              <Text style={styles.tableCell}>{row[23]}</Text>
             </View>
           </View>
         </View>
@@ -195,10 +195,10 @@ const MyPDF = ({ data }) => {
         <View style={styles.table}>
           <View style={styles.tableRow}>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCellHeader}>Total Deductions</Text>
+              <Text style={styles.tableCellHeader}>HAR</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>₹0.00</Text>
+              <Text style={styles.tableCell}>{row[15]}</Text>
             </View>
           </View>
         </View>
@@ -215,13 +215,13 @@ const MyPDF = ({ data }) => {
               <Text style={styles.tableCellHeader}>Bank Name</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>HDFC</Text>
+              <Text style={styles.tableCell}>{row[11]}</Text>
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCellHeader}>Bank A/c No.</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>XXX006412XXXXX</Text>
+              <Text style={styles.tableCell}>{row[12]}</Text>
             </View>
           </View>
           <View style={styles.tableRow}>
@@ -229,7 +229,7 @@ const MyPDF = ({ data }) => {
               <Text style={styles.tableCellHeader}>PAN No.</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>XXXXXXXXXX</Text>
+              <Text style={styles.tableCell}>{row[13]}</Text>
             </View>
           </View>
         </View>

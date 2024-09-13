@@ -53,7 +53,7 @@ function App() {
     return (
       <PDFDownloadLink
         document={<MyPDF data={[row]} />}
-        fileName={`PaySlip_${row[5]}_${row[6]}.pdf`}
+        fileName={`PaySlip_${row[1]}_${row[2]}.pdf`}
       >
         {({ loading }) => (loading ? "Preparing PDF..." : "Download")}
       </PDFDownloadLink>
@@ -99,8 +99,8 @@ function App() {
                     className={rowIndex % 2 === 0 ? "bg-gray-100" : "bg-white"}
                   >
                     <td className="tableData">{rowIndex + 1}</td>
-                    <td className="tableData">{row[5]}</td>
-                    <td className="tableData">{row[6]}</td>
+                    <td className="tableData">{row[1]}</td>
+                    <td className="tableData">{row[2]}</td>
                     <td className="tableData flex justify-center align-middle">
                       {handleDownload(rowIndex, row)}
                     </td>
