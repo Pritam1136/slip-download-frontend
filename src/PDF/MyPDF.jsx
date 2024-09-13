@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
 
 // Custom styles for the PDF layout
@@ -45,6 +44,7 @@ const styles = StyleSheet.create({
 });
 
 const MyPDF = ({ data }) => {
+  const [row] = data;
   return (
     <Document style={styles.table}>
       <Page size={"LETTER"} style={styles.page}>
@@ -56,7 +56,9 @@ const MyPDF = ({ data }) => {
             75, Line No. 5, Hirasingh Bagan, Kasidih, Jamshedpur, Jharkhand -
             831001
           </Text>
-          <Text>Pay Slip for Jul - 2023</Text>
+          <Text>
+            Pay Slip for {row[1]} - {row[2]}
+          </Text>
         </View>
         <View style={styles.table}>
           <View style={styles.tableRow}>
@@ -65,13 +67,13 @@ const MyPDF = ({ data }) => {
             </View>
 
             <View style={styles.tableCell}>
-              <Text style={styles.boldText}>XXXXXX XXXXXXX</Text>
+              <Text style={styles.boldText}>{row[3]}</Text>
             </View>
             <View style={styles.tableCell}>
               <Text style={styles.boldText}>Employee ID</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text style={styles.boldText}>MMYYYY-00XX</Text>
+              <Text style={styles.boldText}>{row[0]}</Text>
             </View>
           </View>
 
@@ -80,59 +82,59 @@ const MyPDF = ({ data }) => {
               <Text style={styles.boldText}>Date of Joining</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text style={styles.boldText}>DD-MM-YYYY</Text>
+              <Text style={styles.boldText}>{row[6]}</Text>
             </View>
 
             <View style={styles.tableCell}>
               <Text style={styles.boldText}>UAN</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text style={styles.boldText}>XXXXXXXXXX</Text>
+              <Text style={styles.boldText}>{row[7]}</Text>
             </View>
           </View>
           <View style={styles.tableRow}>
             <View style={styles.tableCell}>
-              <Text style={styles.boldText}>Date of Joining</Text>
+              <Text style={styles.boldText}>Designation</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text style={styles.boldText}>DD-MM-YYYY</Text>
+              <Text style={styles.boldText}>{row[4]}</Text>
             </View>
 
             <View style={styles.tableCell}>
-              <Text style={styles.boldText}>UAN</Text>
+              <Text style={styles.boldText}>Total working days</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text style={styles.boldText}>XXXXXXXXXX</Text>
+              <Text style={styles.boldText}>{row[8]}</Text>
             </View>
           </View>
           <View style={styles.tableRow}>
             <View style={styles.tableCell}>
-              <Text style={styles.boldText}>Date of Joining</Text>
+              <Text style={styles.boldText}>LOP days</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text style={styles.boldText}>DD-MM-YYYY</Text>
+              <Text style={styles.boldText}>{row[9]}</Text>
             </View>
 
             <View style={styles.tableCell}>
-              <Text style={styles.boldText}>UAN</Text>
+              <Text style={styles.boldText}>Paid days</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text style={styles.boldText}>XXXXXXXXXX</Text>
+              <Text style={styles.boldText}>{row[10]}</Text>
             </View>
           </View>
           <View style={styles.tableRow}>
             <View style={styles.tableCell}>
-              <Text style={styles.boldText}>Date of Joining</Text>
+              <Text style={styles.boldText}>Pan no</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text style={styles.boldText}>DD-MM-YYYY</Text>
+              <Text style={styles.boldText}>{row[13]}</Text>
             </View>
 
             <View style={styles.tableCell}>
-              <Text style={styles.boldText}>UAN</Text>
+              <Text style={styles.boldText}>Department</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text style={styles.boldText}>XXXXXXXXXX</Text>
+              <Text style={styles.boldText}>{row[5]}</Text>
             </View>
           </View>
           <View style={styles.tableRow}>
@@ -140,13 +142,13 @@ const MyPDF = ({ data }) => {
               <Text style={styles.boldText}>Bank Name</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text style={styles.boldText}>HDFC</Text>
+              <Text style={styles.boldText}>{row[11]}</Text>
             </View>
             <View style={styles.tableCell}>
               <Text style={styles.boldText}>Bank A/c No.</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text style={styles.boldText}>XXX006412XXXXX</Text>
+              <Text style={styles.boldText}>{row[12]}</Text>
             </View>
           </View>
         </View>
@@ -171,13 +173,13 @@ const MyPDF = ({ data }) => {
               <Text style={[{ textAlign: "left" }]}>Basic</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "right" }]}>16000.00</Text>
+              <Text style={[{ textAlign: "right" }]}>{row[14]}</Text>
             </View>
             <View style={styles.tableCell}>
               <Text style={[{ textAlign: "left" }]}>EPF</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "right" }]}>0.00</Text>
+              <Text style={[{ textAlign: "right" }]}>{row[17]}</Text>
             </View>
           </View>
 
@@ -186,13 +188,13 @@ const MyPDF = ({ data }) => {
               <Text style={[{ textAlign: "left" }]}>HRA</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "right" }]}>3200</Text>
+              <Text style={[{ textAlign: "right" }]}>{row[15]}</Text>
             </View>
             <View style={styles.tableCell}>
               <Text style={[{ textAlign: "left" }]}>Professional Tax</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "right" }]}>0.00</Text>
+              <Text style={[{ textAlign: "right" }]}>{row[18]}</Text>
             </View>
           </View>
 
@@ -201,13 +203,13 @@ const MyPDF = ({ data }) => {
               <Text style={[{ textAlign: "left" }]}>Other Allowances</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "right" }]}>8160.00</Text>
+              <Text style={[{ textAlign: "right" }]}>{row[16]}</Text>
             </View>
             <View style={styles.tableCell}>
               <Text style={[{ textAlign: "left" }]}>Health Insurance/ESI</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "right" }]}>0.00</Text>
+              <Text style={[{ textAlign: "right" }]}>{row[19]}</Text>
             </View>
           </View>
 
@@ -216,13 +218,13 @@ const MyPDF = ({ data }) => {
               <Text style={[{ textAlign: "left" }]}>Gross Salary</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "right" }]}>16000.00</Text>
+              <Text style={[{ textAlign: "right" }]}>{row[21]}</Text>
             </View>
             <View style={styles.tableCell}>
               <Text style={[{ textAlign: "left" }]}>TDS</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "right" }]}>0.00</Text>
+              <Text style={[{ textAlign: "right" }]}>{row[20]}</Text>
             </View>
           </View>
 
@@ -231,7 +233,7 @@ const MyPDF = ({ data }) => {
               <Text style={[{ textAlign: "left" }]}>Net Pay</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "right" }]}>16000.00</Text>
+              <Text style={[{ textAlign: "right" }]}>{row[23]}</Text>
             </View>
             <View style={styles.tableCell}>
               <Text style={[{ textAlign: "left" }]}>Total Deductions</Text>
@@ -249,7 +251,7 @@ const MyPDF = ({ data }) => {
               <Text>Reimbursement</Text>
             </View>
             <View style={styles.tableCell}>
-              <Text>0.00</Text>
+              <Text>{row[22]}</Text>
             </View>
           </View>
 
