@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   image: {
     height: 40,
     width: 40,
-    marginRight: 10, // Adds margin between the image and text
+    marginRight: 10, 
   },
 });
 
