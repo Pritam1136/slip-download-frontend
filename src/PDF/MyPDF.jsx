@@ -1,5 +1,12 @@
 /* eslint-disable react/prop-types */
-import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import {
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  Image,
+} from "@react-pdf/renderer";
 
 // Custom styles for the PDF layout
 const styles = StyleSheet.create({
@@ -11,6 +18,10 @@ const styles = StyleSheet.create({
   header: {
     textAlign: "center",
     marginBottom: 20,
+  },
+  image: {
+    height: 30,
+    width: 30,
   },
   boldText: {
     fontWeight: "900",
@@ -49,6 +60,11 @@ const MyPDF = ({ data }) => {
     <Document style={styles.table}>
       <Page size={"LETTER"} style={styles.page}>
         <View style={styles.header}>
+          <Image
+            style={styles.image}
+            src="https://media.licdn.com/dms/image/v2/C4D0BAQH6fJz1s57_eA/company-logo_200_200/company-logo_200_200/0/1630509348990/forwardcode_techstudio_logo?e=1734566400&v=beta&t=SYIHhlwQbjb19D52xG4NoSZLEy5a7tUSUYPWmZMjNkk"
+            cache={false}
+          />
           <Text style={styles.boldText}>
             FORWARDCODE TECHSTUDIO PRIVATE LIMITED
           </Text>
