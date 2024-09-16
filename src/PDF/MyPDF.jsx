@@ -18,10 +18,12 @@ const styles = StyleSheet.create({
   header: {
     textAlign: "center",
     marginBottom: 20,
+    borderWidth: 1,
+    borderStyle: "solid",
   },
   image: {
-    height: 30,
-    width: 30,
+    height: 40,
+    width: 40,
   },
   boldText: {
     fontWeight: "900",
@@ -56,15 +58,13 @@ const styles = StyleSheet.create({
 
 const MyPDF = ({ data }) => {
   const [row] = data;
+  const imageSrc = `https://media.licdn.com/dms/image/v2/C4D0BAQH6fJz1s57_eA/company-logo_200_200/company-logo_200_200/0/1630509348990/forwardcode_techstudio_logo?e=1734566400&v=beta&t=SYIHhlwQbjb19D52xG4NoSZLEy5a7tUSUYPWmZMjNkk`;
+
   return (
     <Document style={styles.table}>
       <Page size={"LETTER"} style={styles.page}>
         <View style={styles.header}>
-          <Image
-            style={styles.image}
-            src="https://media.licdn.com/dms/image/v2/C4D0BAQH6fJz1s57_eA/company-logo_200_200/company-logo_200_200/0/1630509348990/forwardcode_techstudio_logo?e=1734566400&v=beta&t=SYIHhlwQbjb19D52xG4NoSZLEy5a7tUSUYPWmZMjNkk"
-            cache={false}
-          />
+          <Image style={styles.image} src={imageSrc} cache={false} />
           <Text style={styles.boldText}>
             FORWARDCODE TECHSTUDIO PRIVATE LIMITED
           </Text>
