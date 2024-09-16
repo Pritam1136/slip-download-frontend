@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   image: {
     height: 40,
     width: 40,
-    marginRight: 10, 
+    marginRight: 10,
   },
 });
 
@@ -77,7 +77,7 @@ const MyPDF = ({ data }) => {
 
   return (
     <Document style={styles.table}>
-      <Page size={"LETTER"} style={styles.page}>
+      <Page size={"A4"} style={styles.page}>
         <View style={styles.header}>
           <Image style={styles.image} src={imageSrc} cache={false} />
           <View>
