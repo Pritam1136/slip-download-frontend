@@ -20,10 +20,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 2,
-    borderWidth: 1, // Border around the entire header
-    borderColor: "#000", // Black border
-    borderStyle: "solid", // Solid border style
-    padding: 10, // Padding inside the header
+    borderWidth: 1,
+    borderColor: "#000",
+    borderStyle: "solid",
+    padding: 10,
   },
   headingText: {
     padding: 5,
