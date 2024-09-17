@@ -1,15 +1,17 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from "react";
-import { url } from "./URL";
-import Header from "./components/Header";
-import { useNavigate } from "react-router-dom";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import MyPDF from "./PDF/MyPDF";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { url } from "./URL";
+import Header from "./components/Header";
+import Filter from "./Components/Filter";
 
 function App() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [filteredData, setFilteredData] = useState([]);
 
   const navigate = useNavigate();
 
@@ -31,6 +33,7 @@ function App() {
         // Validate the format of the result
         if (Array.isArray(result) && Array.isArray(result[0])) {
           setData(result);
+          setFilteredData(result.slice(1)); // Initialize with all data
         } else {
           throw new Error("Unexpected data format");
         }
@@ -47,6 +50,16 @@ function App() {
   const logout = () => {
     localStorage.removeItem("authToken");
     navigate("/login");
+  };
+
+  const handleFilterChange = ({ month, year }) => {
+    const filtered = data
+      .slice(1)
+      .filter(
+        (row) =>
+          (month ? row[1] === month : true) && (year ? row[2] === year : true),
+      );
+    setFilteredData(filtered);
   };
 
   const handleDownload = (rowIndex, row) => {
@@ -76,13 +89,12 @@ function App() {
   return (
     <div>
       <Header />
-      {/* lg:pl-72 lg:pr-8 */}
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12">
         <div className="sm:mx-auto sm:w-full sm:max-w-3xl">
-          <h1 className="mt-10 text-center text-3xl font-bold leading-9 tracking-tight text-indigo-600">
+          <h1 className="mb-2 mt-10 text-center text-3xl font-bold leading-9 tracking-tight text-indigo-600">
             SlipStream
           </h1>
-
+          <Filter onFilterChange={handleFilterChange} />
           <div className="mt-8 overflow-x-auto">
             <table className="min-w-full border-collapse border border-gray-300">
               <thead>
@@ -94,7 +106,7 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                {data.slice(1).map((row, rowIndex) => (
+                {filteredData.map((row, rowIndex) => (
                   <tr
                     key={rowIndex}
                     className={rowIndex % 2 === 0 ? "bg-gray-100" : "bg-white"}
