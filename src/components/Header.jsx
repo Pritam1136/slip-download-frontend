@@ -1,25 +1,25 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import Profile from "./Profile";
-import Sidebar from "./Sidebar"; // Import the Sidebar component
+// import Sidebar from "./Sidebar"; // Import the Sidebar component
 import { Link } from "react-router-dom";
 
 export default function Header() {
-  const [isSidebarOpen, setSidebarOpen] = useState(false);
+  // const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   // Load sidebar state from localStorage on initial render
-  useEffect(() => {
-    const savedSidebarState = localStorage.getItem("isSidebarOpen");
-    if (savedSidebarState !== null) {
-      setSidebarOpen(JSON.parse(savedSidebarState));
-    }
-  }, []);
+  // useEffect(() => {
+  //   const savedSidebarState = localStorage.getItem("isSidebarOpen");
+  //   if (savedSidebarState !== null) {
+  //     setSidebarOpen(JSON.parse(savedSidebarState));
+  //   }
+  // }, []);
 
   // Toggle sidebar and save state to localStorage
-  const toggleSidebar = () => {
-    const newState = !isSidebarOpen;
-    setSidebarOpen(newState);
-    localStorage.setItem("isSidebarOpen", JSON.stringify(newState));
-  };
+  // const toggleSidebar = () => {
+  //   const newState = !isSidebarOpen;
+  //   setSidebarOpen(newState);
+  //   localStorage.setItem("isSidebarOpen", JSON.stringify(newState));
+  // };
 
   return (
     <header>
@@ -40,7 +40,7 @@ export default function Header() {
               <Profile />
             </div>
 
-            <button
+            {/* <button
               data-collapse-toggle="mobile-menu-2"
               type="button"
               className="ml-1 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 lg:hidden" // Hide button on large screens
@@ -61,11 +61,11 @@ export default function Header() {
                   clipRule="evenodd"
                 ></path>
               </svg>
-            </button>
+            </button> */}
           </div>
         </div>
       </nav>
-      <Sidebar isOpen={isSidebarOpen} />{" "}
+      {/* <Sidebar isOpen={isSidebarOpen} />{" "} */}
       {/* Sidebar toggles on small screens */}
     </header>
   );
