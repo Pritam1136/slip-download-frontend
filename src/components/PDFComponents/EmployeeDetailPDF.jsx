@@ -2,7 +2,7 @@
 import { Text, View } from "@react-pdf/renderer";
 import { styles } from "../../PDF/style";
 
-function EmploeeDetailPDF({ data }) {
+function EmployeeDetailPDF({ data }) {
   const [row] = data;
 
   return (
@@ -101,4 +101,4 @@ function EmploeeDetailPDF({ data }) {
   );
 }
 
-export default EmploeeDetailPDF;
+export default EmployeeDetailPDF;

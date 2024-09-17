@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Page, Text, View, Document, Image } from "@react-pdf/renderer";
 import { imageSrc } from "../URL";
-import EmploeeDetailPDF from "../Components/PDFComponents/EmploeeDetailPDF";
+import EmployeeDetailPDF from "../Components/PDFComponents/EmployeeDetailPDF";
 import EarningAndDeductionDetailPDF from "../Components/PDFComponents/EarningAndDeductionDetailPDF";
 import OtherInfoPDF from "../Components/PDFComponents/OtherInfoPDF";
 import { styles } from "./style";
@@ -30,7 +30,7 @@ const MyPDF = ({ data }) => {
           </Text>
         </View>
         {/* Employee details */}
-        <EmploeeDetailPDF data={data} />
+        <EmployeeDetailPDF data={data} />
 
         {/* Earnings and Deductions */}
         <EarningAndDeductionDetailPDF data={data} />
