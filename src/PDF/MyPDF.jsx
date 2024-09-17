@@ -8,6 +8,9 @@ import {
   Image,
 } from "@react-pdf/renderer";
 import { imageSrc } from "../URL";
+import EmploeeDetailPDF from "../Components/PDFComponents/EmploeeDetailPDF";
+import EarningAndDeductionDetailPDF from "../Components/PDFComponents/EarningAndDeductionDetailPDF";
+import OtherInfoPDF from "../Components/PDFComponents/OtherInfoPDF";
 
 // Custom styles for the PDF layout
 const styles = StyleSheet.create({
@@ -95,219 +98,14 @@ const MyPDF = ({ data }) => {
             Pay Slip for {row[1]} - {row[2]}
           </Text>
         </View>
-        <View style={styles.table}>
-          <View style={styles.tableRow}>
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>Employee Name</Text>
-            </View>
-
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>{row[3]}</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>Employee ID</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>{row[0]}</Text>
-            </View>
-          </View>
-
-          <View style={styles.tableRow}>
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>Date of Joining</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>{row[6]}</Text>
-            </View>
-
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>UAN</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>{row[7]}</Text>
-            </View>
-          </View>
-          <View style={styles.tableRow}>
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>Designation</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>{row[4]}</Text>
-            </View>
-
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>Total working days</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>{row[8]}</Text>
-            </View>
-          </View>
-          <View style={styles.tableRow}>
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>LOP days</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>{row[9]}</Text>
-            </View>
-
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>Paid days</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>{row[10]}</Text>
-            </View>
-          </View>
-          <View style={styles.tableRow}>
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>Pan no</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>{row[13]}</Text>
-            </View>
-
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>Department</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>{row[5]}</Text>
-            </View>
-          </View>
-          <View style={styles.tableRow}>
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>Bank Name</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>{row[11]}</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>Bank A/c No.</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={styles.boldText}>{row[12]}</Text>
-            </View>
-          </View>
-        </View>
+        {/* Employee details */}
+        <EmploeeDetailPDF data={data} />
 
         {/* Earnings and Deductions */}
-        <View style={styles.table}>
-          <View style={styles.tableRow}>
-            <View style={{ flex: 1 }}>
-              <Text style={[styles.sectionTitle, { textAlign: "center" }]}>
-                Earnings
-              </Text>
-            </View>
-            <View style={{ flex: 1 }}>
-              <Text style={[styles.sectionTitle, { textAlign: "center" }]}>
-                Deductions
-              </Text>
-            </View>
-          </View>
-
-          <View style={styles.tableRow}>
-            <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "left" }]}>Basic</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "right" }]}>{row[14]}</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "left" }]}>EPF</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "right" }]}>{row[17]}</Text>
-            </View>
-          </View>
-
-          <View style={styles.tableRow}>
-            <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "left" }]}>HRA</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "right" }]}>{row[15]}</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "left" }]}>Professional Tax</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "right" }]}>{row[18]}</Text>
-            </View>
-          </View>
-
-          <View style={styles.tableRow}>
-            <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "left" }]}>Other Allowances</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "right" }]}>{row[16]}</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "left" }]}>Health Insurance/ESI</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "right" }]}>{row[19]}</Text>
-            </View>
-          </View>
-
-          <View style={styles.tableRow}>
-            <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "left" }]}>Gross Salary</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "right" }]}>{row[21]}</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "left" }]}>TDS</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "right" }]}>{row[20]}</Text>
-            </View>
-          </View>
-
-          <View style={styles.tableRow}>
-            <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "left" }]}>Net Pay</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "right" }]}>{row[23]}</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "left" }]}>Total Deductions</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text style={[{ textAlign: "right" }]}>0.00</Text>
-            </View>
-          </View>
-        </View>
+        <EarningAndDeductionDetailPDF data={data} />
 
         {/* Other Information */}
-        <View style={styles.table}>
-          <View style={styles.tableRow}>
-            <View style={styles.tableCell}>
-              <Text>Reimbursement</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text>{row[22]}</Text>
-            </View>
-          </View>
-
-          <View style={styles.tableRow}>
-            <View style={styles.tableCell}>
-              <Text>Amount in Words</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text>Sixteen Thousand Only</Text>
-            </View>
-          </View>
-
-          <View style={styles.tableRow}>
-            <View style={styles.tableCell}>
-              <Text>Mode of Payment</Text>
-            </View>
-            <View style={styles.tableCell}>
-              <Text>Bank Transfer</Text>
-            </View>
-          </View>
-        </View>
+        <OtherInfoPDF data={data} />
 
         {/* Footer Note */}
         <View style={[styles.footerNote, { textAlign: "left" }]}>
