@@ -3,23 +3,23 @@ import { useState } from "react";
 
 const Filter = ({ onFilterChange }) => {
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
     "May",
     "June",
     "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
 
   const years = Array.from(
     new Array(10),
-    (val, index) => Number(new Date().getFullYear()) - index,
+    (_val, index) => Number(new Date().getFullYear()) - index,
   ); // Last 10 years
 
   const [selectedMonth, setSelectedMonth] = useState("");
