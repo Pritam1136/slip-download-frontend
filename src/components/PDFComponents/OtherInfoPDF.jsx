@@ -1,9 +1,13 @@
 /* eslint-disable react/prop-types */
 import { Text, View } from "@react-pdf/renderer";
 import { styles } from "../../PDF/style";
+import { toWords } from "number-to-words";
 
 function OtherInfoPDF({ data }) {
   const [row] = data;
+  const netPay = row[23]; // Net Pay amount
+  const amountInWords = toWords(netPay); // Convert to words
+
   return (
     <View style={styles.table}>
       <View style={styles.tableRow}>
@@ -20,7 +24,7 @@ function OtherInfoPDF({ data }) {
           <Text>Amount in Words</Text>
         </View>
         <View style={styles.tableCell}>
-          <Text>Sixteen Thousand Only</Text>
+          <Text>{amountInWords} Only</Text>
         </View>
       </View>
 
