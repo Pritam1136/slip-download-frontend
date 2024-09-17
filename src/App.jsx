@@ -53,12 +53,18 @@ function App() {
   };
 
   const handleFilterChange = ({ month, year }) => {
-    const filtered = data
-      .slice(1)
-      .filter(
-        (row) =>
-          (month ? row[1] === month : true) && (year ? row[2] === year : true),
+    console.log("Data:", data); // Log the data
+    console.log("Selected Month:", month); // Log selected month
+    console.log("Selected Year:", year); // Log selected year
+
+    const filtered = data.slice(1).filter((row) => {
+      const rowMonth = row[1]?.trim().toLowerCase();
+      const rowYear = row[2]?.trim();
+      return (
+        (month ? rowMonth === month.toLowerCase() : true) &&
+        (year ? rowYear === year : true)
       );
+    });
     setFilteredData(filtered);
   };
 
