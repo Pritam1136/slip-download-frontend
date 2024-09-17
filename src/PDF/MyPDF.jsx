@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { Page, Text, View, Document, Image } from "@react-pdf/renderer";
 import { imageSrc } from "../URL";
-import EmployeeDetailPDF from "../Components/PDFComponents/EmployeeDetailPDF";
-import EarningAndDeductionDetailPDF from "../Components/PDFComponents/EarningAndDeductionDetailPDF";
-import OtherInfoPDF from "../Components/PDFComponents/OtherInfoPDF";
+import EmployeeDetailPDF from "../components/PDFComponents/EmployeeDetailPDF";
+import EarningAndDeductionDetailPDF from "../components/PDFComponents/EarningAndDeductionDetailPDF";
+import OtherInfoPDF from "../components/PDFComponents/OtherInfoPDF";
 import { styles } from "./style";
 
 const MyPDF = ({ data }) => {
