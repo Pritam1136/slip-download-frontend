@@ -4,6 +4,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { url } from "../URL";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -46,7 +48,9 @@ function Login() {
 
   if (loading)
     return (
-      <p className="loadingText backgroundSVG h-screen">Please Wait....</p>
+      <p className="loadingText backgroundSVG h-screen">
+        <FontAwesomeIcon icon={faSpinner} spin />
+      </p>
     );
 
   return (

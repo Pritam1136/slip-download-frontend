@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { url } from "./URL";
 import Header from "./components/Header";
 import Filter from "./components/Filter";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   const [data, setData] = useState([]);
@@ -70,12 +72,19 @@ function App() {
         document={<MyPDF data={[row]} />}
         fileName={`PaySlip_${row[1]}_${row[2]}.pdf`}
       >
-        {({ loading }) => (loading ? "Preparing PDF..." : "Download")}
+        {({ loading }) =>
+          loading ? <FontAwesomeIcon icon={faSpinner} spin /> : "Download"
+        }
       </PDFDownloadLink>
     );
   };
 
-  if (loading) return <p className="loadingText">Loading...</p>;
+  if (loading)
+    return (
+      <p className="loadingText">
+        <FontAwesomeIcon icon={faSpinner} spin />
+      </p>
+    );
   if (error)
     return (
       <p className="loadingText">

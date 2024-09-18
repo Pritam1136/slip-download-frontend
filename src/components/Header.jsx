@@ -36,7 +36,7 @@ export default function Header() {
             </span>
           </Link>
           <div>
-            <h1 className="my-2 text-3xl font-bold leading-9 tracking-tight text-indigo-600">
+            <h1 className="text-2xl md:text-3xl font-bold leading-9 tracking-tight text-indigo-600">
               SlipStream
             </h1>
           </div>
