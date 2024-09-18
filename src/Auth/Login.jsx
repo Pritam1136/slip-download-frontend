@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-// Login.jsx
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -23,10 +21,9 @@ function Login() {
       setLoading(false);
       setStep(2);
     } catch (error) {
+      setStep(1);
       setLoading(false);
-      setError(
-        "You have'nt entered the email... If you've  enterd the mail then please check your internet connection.",
-      );
+      setError(error.response.data.message);
     }
   };
 
