@@ -93,9 +93,6 @@ function App() {
       <Header />
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12">
         <div className="sm:mx-auto sm:w-full sm:max-w-3xl">
-          <h1 className="mb-2 mt-10 text-center text-3xl font-bold leading-9 tracking-tight text-indigo-600">
-            SlipStream
-          </h1>
           <Filter onFilterChange={handleFilterChange} />
           <div className="mt-8 overflow-x-auto">
             <table className="min-w-full border-collapse border border-gray-300">

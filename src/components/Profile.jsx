@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons"; // Import the icon
 
 function Profile() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +18,7 @@ function Profile() {
         onClick={() => setIsOpen(!isOpen)}
         className="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-300"
       >
-        Me
+        <FontAwesomeIcon icon={faUser} />
       </button>
 
       {isOpen && (

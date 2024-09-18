@@ -35,6 +35,11 @@ export default function Header() {
               FCTS
             </span>
           </Link>
+          <div>
+            <h1 className="my-2 text-3xl font-bold leading-9 tracking-tight text-indigo-600">
+              SlipStream
+            </h1>
+          </div>
           <div className="flex items-center lg:order-2">
             <div className="mr-2 rounded-full px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-300 lg:px-5 lg:py-2.5">
               <Profile />
