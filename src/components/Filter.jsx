@@ -40,7 +40,7 @@ const Filter = ({ onFilterChange }) => {
       <select
         value={selectedMonth}
         onChange={handleMonthChange}
-        className="form-select"
+        className="optionStyles"
       >
         <option value="">Select Month</option>
         {months.map((month, index) => (
@@ -53,7 +53,7 @@ const Filter = ({ onFilterChange }) => {
       <select
         value={selectedYear}
         onChange={handleYearChange}
-        className="form-select"
+        className="optionStyles"
       >
         <option value="">Select Year</option>
         {years.map((year) => (
