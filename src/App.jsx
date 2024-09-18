@@ -114,19 +114,32 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                {filteredData.map((row, rowIndex) => (
-                  <tr
-                    key={rowIndex}
-                    className={rowIndex % 2 === 0 ? "bg-gray-100" : "bg-white"}
-                  >
-                    <td className="tableData">{rowIndex + 1}</td>
-                    <td className="tableData">{row[1]}</td>
-                    <td className="tableData">{row[2]}</td>
-                    <td className="tableData">
-                      {handleDownload(rowIndex, row)}
+                {filteredData.length > 0 ? (
+                  filteredData.map((row, rowIndex) => (
+                    <tr
+                      key={rowIndex}
+                      className={
+                        rowIndex % 2 === 0 ? "bg-gray-100" : "bg-white"
+                      }
+                    >
+                      <td className="tableData">{rowIndex + 1}</td>
+                      <td className="tableData">{row[1]}</td>
+                      <td className="tableData">{row[2]}</td>
+                      <td className="tableData">
+                        {handleDownload(rowIndex, row)}
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td
+                      style={{ textAlign: "center", padding: "2px" }}
+                      colSpan="4"
+                    >
+                      No data matched.
                     </td>
                   </tr>
-                ))}
+                )}
               </tbody>
             </table>
           </div>
