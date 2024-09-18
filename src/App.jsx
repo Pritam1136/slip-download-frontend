@@ -66,7 +66,7 @@ function App() {
     setFilteredData(filtered);
   };
 
-  const handleDownload = (rowIndex, row) => {
+  const handleDownload = (_rowIndex, row) => {
     return (
       <PDFDownloadLink
         document={<MyPDF data={[row]} />}

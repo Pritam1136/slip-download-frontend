@@ -43,6 +43,13 @@ function Login() {
     }
   };
 
+  // Handle Enter key press for sending OTP or verifying OTP
+  const handleKeyPress = (e, action) => {
+    if (e.key === "Enter") {
+      action();
+    }
+  };
+
   if (loading)
     return (
       <p className="loadingText backgroundSVG h-screen">
@@ -87,6 +94,7 @@ function Login() {
                     placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    onKeyDown={(e) => handleKeyPress(e, sendOtp)}
                     required
                     className="inputFeild"
                   />
@@ -117,6 +125,7 @@ function Login() {
                     placeholder="Enter OTP"
                     value={otp}
                     onChange={(e) => setOtp(e.target.value)}
+                    onKeyDown={(e) => handleKeyPress(e, verifyOtp)}
                     required
                     className="inputFeild"
                   />
