@@ -122,7 +122,7 @@ function App() {
                     <td className="tableData">{rowIndex + 1}</td>
                     <td className="tableData">{row[1]}</td>
                     <td className="tableData">{row[2]}</td>
-                    <td className="tableData flex justify-center align-middle">
+                    <td className="tableData">
                       {handleDownload(rowIndex, row)}
                     </td>
                   </tr>
