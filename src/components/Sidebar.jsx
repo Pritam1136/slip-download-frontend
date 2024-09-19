@@ -63,7 +63,7 @@ function Sidebar({ isOpen, onFilterChange }) {
         </li>
         <li className="sidebarOptions">
           <button onClick={handleFinancialYearSelection}>
-            {`${selectedYear - 1}-${selectedYear} (Financial Year)`}
+            {`${selectedYear - 1}-${selectedYear}`}
           </button>
         </li>
         <li className="sidebarOptions">
