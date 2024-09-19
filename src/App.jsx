@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { url } from "./URL";
 import Header from "./components/Header";
-import Filter from "./components/Filter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload, faSpinner } from "@fortawesome/free-solid-svg-icons";
 
@@ -32,15 +31,14 @@ function App() {
 
         const result = await response.json();
 
-        // Validate the format of the result
         if (Array.isArray(result) && Array.isArray(result[0])) {
           setData(result);
-          setFilteredData(result.slice(1)); // Initialize with all data
+          setFilteredData(result.slice(1).filter((row) => row[2] === "2024"));
         } else {
           throw new Error("Unexpected data format");
         }
       } catch (err) {
-        setError(`You are not an employee....`);
+        setError("You are not an employee....");
       } finally {
         setLoading(false);
       }
@@ -54,16 +52,42 @@ function App() {
     navigate("/login");
   };
 
-  const handleFilterChange = ({ month, year }) => {
-    const filtered = data.slice(1).filter((row) => {
-      const rowMonth = row[1]?.trim().toLowerCase();
-      const rowYear = row[2]?.trim();
-      return (
-        (month ? rowMonth === month.trim().toLowerCase() : true) &&
-        (year ? rowYear === year.trim() : true)
-      );
-    });
-    setFilteredData(filtered);
+  const handleFilterChange = ({ month, year, financialYear }) => {
+    if (financialYear) {
+      const { start, end } = financialYear;
+      const filtered = data.slice(1).filter((row) => {
+        const rowYear = Number(row[2].trim());
+        const rowMonth = row[1]?.trim().toLowerCase();
+        return (
+          (rowYear === start &&
+            [
+              "apr",
+              "may",
+              "jun",
+              "jul",
+              "aug",
+              "sep",
+              "oct",
+              "nov",
+              "dec",
+            ].includes(rowMonth)) ||
+          (rowYear === end && ["jan", "feb", "mar"].includes(rowMonth))
+        );
+      });
+      setFilteredData(filtered);
+    } else if (month && year) {
+      const filtered = data.slice(1).filter((row) => {
+        const rowMonth = row[1]?.trim().toLowerCase();
+        const rowYear = row[2]?.trim();
+        return (
+          rowMonth === month.trim().toLowerCase() && rowYear === year.toString()
+        );
+      });
+      setFilteredData(filtered);
+    } else if (year) {
+      const filtered = data.slice(1).filter((row) => row[2] === year);
+      setFilteredData(filtered);
+    }
   };
 
   const handleDownload = (_rowIndex, row) => {
@@ -77,7 +101,7 @@ function App() {
             <FontAwesomeIcon icon={faSpinner} spin />
           ) : (
             <>
-              <FontAwesomeIcon icon={faDownload} />
+              Download <FontAwesomeIcon icon={faDownload} />
             </>
           )
         }

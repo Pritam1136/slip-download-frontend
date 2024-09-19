@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import DatePicker from "react-datepicker";
@@ -11,11 +12,32 @@ function Sidebar({ isOpen, onFilterChange }) {
 
   const [selectedYear, setSelectedYear] = useState("2024");
   const [date, setDate] = useState(new Date());
+  const [isFinancialYear, setIsFinancialYear] = useState(false);
 
   const handleYearChange = (e) => {
     const newYear = e.target.value;
     setSelectedYear(newYear);
+    setIsFinancialYear(false); // Reset financial year mode
     onFilterChange({ year: newYear });
+  };
+
+  const handleFinancialYearSelection = () => {
+    const financialYearStart = Number(selectedYear) - 1; 
+    const financialYearEnd = Number(selectedYear); 
+    setIsFinancialYear(true);
+
+    onFilterChange({
+      financialYear: { start: financialYearStart, end: financialYearEnd },
+    });
+  };
+
+  const handleMonthChange = (selectedDate) => {
+    const month = selectedDate
+      .toLocaleString("default", { month: "short" })
+      .toLowerCase();
+    const year = selectedDate.getFullYear();
+    setDate(selectedDate);
+    onFilterChange({ month, year });
   };
 
   return (
@@ -39,9 +61,18 @@ function Sidebar({ isOpen, onFilterChange }) {
             ))}
           </select>
         </li>
-        <li className="sidebarOptions">2023-24</li>
         <li className="sidebarOptions">
-          <DatePicker selected={date} onChange={(date) => setDate(date)} />
+          <button onClick={handleFinancialYearSelection}>
+            {`${selectedYear - 1}-${selectedYear} (Financial Year)`}
+          </button>
+        </li>
+        <li className="sidebarOptions">
+          <DatePicker
+            dateFormat="MMMM yyyy"
+            className="bg-slate-100"
+            selected={date}
+            onChange={handleMonthChange}
+          />
         </li>
       </ul>
     </div>
