@@ -7,7 +7,7 @@ import { url } from "./URL";
 import Header from "./components/Header";
 import Filter from "./components/Filter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   const [data, setData] = useState([]);
@@ -73,7 +73,13 @@ function App() {
         fileName={`PaySlip_${row[1]}_${row[2]}.pdf`}
       >
         {({ loading }) =>
-          loading ? <FontAwesomeIcon icon={faSpinner} spin /> : "Download"
+          loading ? (
+            <FontAwesomeIcon icon={faSpinner} spin />
+          ) : (
+            <>
+              <FontAwesomeIcon icon={faDownload} />
+            </>
+          )
         }
       </PDFDownloadLink>
     );
@@ -99,10 +105,9 @@ function App() {
 
   return (
     <div>
-      <Header />
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12">
+      <Header onFilterChange={handleFilterChange} />
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:ml-64">
         <div className="sm:mx-auto sm:w-full sm:max-w-3xl">
-          <Filter onFilterChange={handleFilterChange} />
           <div className="mt-8 overflow-x-auto">
             <table className="min-w-full border-collapse border border-gray-300">
               <thead>

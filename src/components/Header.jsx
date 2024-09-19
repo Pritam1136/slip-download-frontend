@@ -1,39 +1,33 @@
-// import { useState, useEffect } from "react";
+/* eslint-disable react/prop-types */
+import { useState, useEffect } from "react";
 import Profile from "./Profile";
-// import Sidebar from "./Sidebar"; // Import the Sidebar component
+import Sidebar from "./Sidebar"; // Import the Sidebar component
 import { Link } from "react-router-dom";
 
-export default function Header() {
-  // const [isSidebarOpen, setSidebarOpen] = useState(false);
+export default function Header({ onFilterChange }) {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   // Load sidebar state from localStorage on initial render
-  // useEffect(() => {
-  //   const savedSidebarState = localStorage.getItem("isSidebarOpen");
-  //   if (savedSidebarState !== null) {
-  //     setSidebarOpen(JSON.parse(savedSidebarState));
-  //   }
-  // }, []);
+  useEffect(() => {
+    const savedSidebarState = localStorage.getItem("isSidebarOpen");
+    if (savedSidebarState !== null) {
+      setSidebarOpen(JSON.parse(savedSidebarState));
+    }
+  }, []);
 
   // Toggle sidebar and save state to localStorage
-  // const toggleSidebar = () => {
-  //   const newState = !isSidebarOpen;
-  //   setSidebarOpen(newState);
-  //   localStorage.setItem("isSidebarOpen", JSON.stringify(newState));
-  // };
+  const toggleSidebar = () => {
+    const newState = !isSidebarOpen;
+    setSidebarOpen(newState);
+    localStorage.setItem("isSidebarOpen", JSON.stringify(newState));
+  };
 
   return (
     <header>
       <nav className="my-2 bg-slate-100 px-4 py-2.5 shadow-sm lg:px-6">
         <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between">
           <Link to={"/"} className="flex items-center">
-            <img
-              src="https://media.licdn.com/dms/image/v2/C4D0BAQH6fJz1s57_eA/company-logo_200_200/company-logo_200_200/0/1630509348990/forwardcode_techstudio_logo?e=1733961600&v=beta&t=RgWEdt4YnKk8_oIG7LCGqhbfGeahg7QswWTmFXmcxjg"
-              className="mr-3 h-6 sm:h-9"
-              alt="FCTS Logo"
-            />
-            <span className="self-center whitespace-nowrap text-xl font-semibold">
-              FCTS
-            </span>
+            <img src="./Logo.png" className="mr-3 h-6 sm:h-9" alt="FCTS Logo" />
           </Link>
           <div>
             <h1 className="text-2xl font-bold leading-9 tracking-tight text-indigo-600 md:text-3xl">
@@ -45,7 +39,7 @@ export default function Header() {
               <Profile />
             </div>
 
-            {/* <button
+            <button
               data-collapse-toggle="mobile-menu-2"
               type="button"
               className="ml-1 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 lg:hidden" // Hide button on large screens
@@ -66,11 +60,11 @@ export default function Header() {
                   clipRule="evenodd"
                 ></path>
               </svg>
-            </button> */}
+            </button>
           </div>
         </div>
       </nav>
-      {/* <Sidebar isOpen={isSidebarOpen} />{" "} */}
+      <Sidebar isOpen={isSidebarOpen} onFilterChange={onFilterChange} />{" "}
       {/* Sidebar toggles on small screens */}
     </header>
   );
