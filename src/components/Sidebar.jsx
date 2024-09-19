@@ -22,8 +22,8 @@ function Sidebar({ isOpen, onFilterChange }) {
   };
 
   const handleFinancialYearSelection = () => {
-    const financialYearStart = Number(selectedYear) - 1; 
-    const financialYearEnd = Number(selectedYear); 
+    const financialYearStart = Number(selectedYear) - 1;
+    const financialYearEnd = Number(selectedYear);
     setIsFinancialYear(true);
 
     onFilterChange({
