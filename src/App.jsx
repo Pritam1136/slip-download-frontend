@@ -100,7 +100,7 @@ function App() {
           loading ? (
             <FontAwesomeIcon icon={faSpinner} spin />
           ) : (
-            <span>
+            <span className="hover:text-gray-500">
               Download <FontAwesomeIcon icon={faArrowDownLong} />
             </span>
           )

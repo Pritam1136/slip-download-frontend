@@ -74,6 +74,7 @@ function Sidebar({ isOpen, onFilterChange }) {
             onChange={handleMonthChange}
           />
         </li>
+        <li className="sidebarOptions">Download all</li>
       </ul>
     </div>
   );
