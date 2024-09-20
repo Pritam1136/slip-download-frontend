@@ -52,9 +52,9 @@ function App() {
     navigate("/login");
   };
 
-  const handleFilterChange = ({ month, year, financialYear }) => {
+  const handleFilterChange = ({ year, financialYear }) => {
     if (financialYear) {
-      const { start, end } = financialYear;
+      const { start, end, ...rest } = financialYear;
       const filtered = data.slice(1).filter((row) => {
         const rowYear = Number(row[2].trim());
         const rowMonth = row[1]?.trim().toLowerCase();

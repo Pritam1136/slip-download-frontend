@@ -1,7 +1,5 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import "react-datepicker/dist/react-datepicker.css";
 
 function Sidebar({ isOpen, onFilterChange }) {
   const years = Array.from(
@@ -10,20 +8,20 @@ function Sidebar({ isOpen, onFilterChange }) {
   );
 
   const [selectedYear, setSelectedYear] = useState("2024");
-  // const [date, setDate] = useState(new Date());
-  const [isFinancialYear, setIsFinancialYear] = useState(false);
+  const [selectedFinancialYear, setSelectedFinancialYear] = useState("2024");
 
   const handleYearChange = (e) => {
     const newYear = e.target.value;
-    setIsFinancialYear(false); // Reset financial year mode
     setSelectedYear(newYear);
     onFilterChange({ year: newYear });
   };
 
-  const handleFinancialYearSelection = () => {
-    const financialYearStart = Number(selectedYear) - 1;
-    const financialYearEnd = Number(selectedYear);
-    setIsFinancialYear(true);
+  const handleFinancialYearChange = (e) => {
+    const financialYear = e.target.value;
+    setSelectedFinancialYear(financialYear);
+
+    const financialYearStart = Number(financialYear) - 1;
+    const financialYearEnd = Number(financialYear);
 
     onFilterChange({
       financialYear: { start: financialYearStart, end: financialYearEnd },
@@ -52,9 +50,18 @@ function Sidebar({ isOpen, onFilterChange }) {
           </select>
         </li>
         <li className="sidebarOptions">
-          <button onClick={handleFinancialYearSelection}>
-            {`${selectedYear - 1}-${selectedYear}`}
-          </button>
+          <select
+            value={selectedFinancialYear}
+            onChange={handleFinancialYearChange}
+            className="optionStyles"
+          >
+            <option value="2024">2024 - 2023</option>
+            {years.map((year) => (
+              <option key={year} value={year}>
+                {year} - {year - 1}
+              </option>
+            ))}
+          </select>
         </li>
         <li className="sidebarOptions">Download all</li>
       </ul>
