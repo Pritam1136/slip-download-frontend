@@ -1,15 +1,25 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons"; // Import the icon
+import {
+  faMoon,
+  faRightFromBracket,
+  faSun,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 
 function Profile() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false); // New state for dark mode
   const navigate = useNavigate();
 
   const logout = () => {
     localStorage.removeItem("authToken");
     navigate("/login");
+  };
+
+  const toggleMode = () => {
+    setIsDarkMode(!isDarkMode);
   };
 
   return (
@@ -25,14 +35,21 @@ function Profile() {
         <div className="absolute right-0 z-10 mt-2 w-48 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
           <ul className="py-1 text-sm text-gray-700">
             <li>
-              <div className="profileMenu">Account</div>
+              <div className="profileMenu">
+                <FontAwesomeIcon icon={faUser} />
+                <span className="ml-2">Account</span>
+              </div>
             </li>
-            <li>
-              <div className="profileMenu">Settings</div>
+            <li onClick={toggleMode} className="profileMenu">
+              <FontAwesomeIcon icon={isDarkMode ? faMoon : faSun} />
+              <span className="ml-2">
+                {isDarkMode ? "Dark Mode" : "Light Mode"}
+              </span>
             </li>
             <li>
               <div className="profileMenu text-red-600" onClick={logout}>
-                Logout
+                <FontAwesomeIcon icon={faRightFromBracket} />
+                <span className="ml-2">Logout</span>
               </div>
             </li>
           </ul>
