@@ -75,15 +75,6 @@ function App() {
         );
       });
       setFilteredData(filtered);
-    } else if (month && year) {
-      const filtered = data.slice(1).filter((row) => {
-        const rowMonth = row[1]?.trim().toLowerCase();
-        const rowYear = row[2]?.trim();
-        return (
-          rowMonth === month.trim().toLowerCase() && rowYear === year.toString()
-        );
-      });
-      setFilteredData(filtered);
     } else if (year) {
       const filtered = data.slice(1).filter((row) => row[2] === year);
       setFilteredData(filtered);
