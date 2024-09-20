@@ -4,7 +4,7 @@ import { useState } from "react";
 function Sidebar({ isOpen, onFilterChange }) {
   const years = Array.from(
     new Array(10),
-    (_val, index) => Number(new Date().getFullYear() - 1) - index,
+    (_val, index) => Number(new Date().getFullYear()) - index,
   );
 
   const [selectedYear, setSelectedYear] = useState("2024");
@@ -41,7 +41,6 @@ function Sidebar({ isOpen, onFilterChange }) {
             onChange={handleYearChange}
             className="optionStyles"
           >
-            <option value="2024">2024</option>
             {years.map((year) => (
               <option key={year} value={year}>
                 {year}
@@ -55,10 +54,9 @@ function Sidebar({ isOpen, onFilterChange }) {
             onChange={handleFinancialYearChange}
             className="optionStyles"
           >
-            <option value="2024">2024 - 2023</option>
             {years.map((year) => (
               <option key={year} value={year}>
-                {year} - {year - 1}
+                {year - 1} - {year}
               </option>
             ))}
           </select>
