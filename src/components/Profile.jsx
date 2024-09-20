@@ -55,10 +55,7 @@ function Profile() {
                 <span className="ml-2">Account</span>
               </div>
             </li>
-            <li
-              onClick={toggleMode}
-              className="flex cursor-pointer items-center"
-            >
+            <li onClick={toggleMode}>
               <li onClick={toggleMode} className="profileMenu">
                 <FontAwesomeIcon icon={isDarkMode ? faMoon : faSun} />
                 <span className="ml-2">
