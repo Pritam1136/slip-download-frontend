@@ -37,18 +37,14 @@ function Profile() {
     <div className="relative" ref={menuRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:text-white"
+        className="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-300"
       >
         <FontAwesomeIcon icon={faUser} />
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 z-10 mt-2 w-48 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 ">
+        <div className="absolute right-0 z-10 mt-2 w-48 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
           <ul className="py-1 text-sm text-gray-700">
-            <li className="profileMenu">
-              <FontAwesomeIcon icon={faUser} />
-              <span className="ml-2">Account</span>
-            </li>
             <li className="profileMenu" onClick={toggleMode}>
               <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} />
               <span className="ml-2">

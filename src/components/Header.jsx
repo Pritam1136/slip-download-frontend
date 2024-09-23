@@ -3,9 +3,11 @@ import { useState, useEffect } from "react";
 import Profile from "./Profile";
 import Sidebar from "./Sidebar"; // Import the Sidebar component
 import { Link } from "react-router-dom";
+import { useDarkMode } from "../context/DarkModeContext"; // Import Dark Mode context
 
 export default function Header({ onFilterChange }) {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const { isDarkMode } = useDarkMode(); // Get the current mode (dark or light)
 
   // Load sidebar state from localStorage on initial render
   useEffect(() => {
@@ -24,13 +26,21 @@ export default function Header({ onFilterChange }) {
 
   return (
     <header>
-      <nav className="my-2 bg-slate-100 px-4 py-2.5 shadow-sm lg:px-6">
+      <nav className="mainHeader my-2 bg-slate-100 px-4 py-2.5 shadow-sm lg:px-6">
         <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between">
           <Link to={"/"} className="flex items-center">
-            <img src="./Logo.png" className="mr-3 h-6 sm:h-9" alt="FCTS Logo" />
+            <img
+              src={
+                isDarkMode
+                  ? "./forwardcode_logo_white.svg" // Light logo for dark mode
+                  : "./forwardcode_logo_black_text.svg" // Dark logo for light mode
+              }
+              className="mr-3 h-6 sm:h-9"
+              alt="FCTS Logo"
+            />
           </Link>
           <div>
-            <h1 className="hidden font-bold leading-9 text-[#a651eb] lg:block lg:text-4xl">
+            <h1 className="heading hidden font-bold leading-9 text-[#a651eb] lg:block lg:text-4xl">
               SlipStream
             </h1>
           </div>
@@ -42,7 +52,7 @@ export default function Header({ onFilterChange }) {
             <button
               data-collapse-toggle="mobile-menu-2"
               type="button"
-              className="ml-1 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 lg:hidden" // Hide button on large screens
+              className="ml-1 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 lg:hidden"
               aria-controls="mobile-menu-2"
               aria-expanded="false"
               onClick={toggleSidebar}

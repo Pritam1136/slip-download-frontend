@@ -30,7 +30,7 @@ function Sidebar({ isOpen, onFilterChange }) {
 
   return (
     <div
-      className={`fixed left-0 top-0 mt-[74px] h-full w-64 bg-[#fff] p-4 shadow-2xl transition-transform duration-300 lg:mt-[78px] ${
+      className={`sidebar fixed left-0 top-0 mt-[74px] h-full w-64 bg-[#fff] p-4 shadow-2xl transition-transform duration-300 lg:mt-[78px] ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       } lg:block lg:translate-x-0`}
     >

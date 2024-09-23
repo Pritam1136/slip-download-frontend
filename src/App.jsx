@@ -123,7 +123,7 @@ function App() {
       <Header onFilterChange={handleFilterChange} />
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:ml-64">
         <div className="sm:mx-auto sm:w-full sm:max-w-3xl">
-          <h1 className="block text-center text-4xl font-bold leading-9 tracking-tight text-[#a651eb] lg:hidden">
+          <h1 className="heading block text-center text-4xl font-bold leading-9 tracking-tight text-[#a651eb] lg:hidden">
             SlipStream
           </h1>
           <div className="mt-8 overflow-x-auto">
