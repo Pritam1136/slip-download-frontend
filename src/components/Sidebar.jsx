@@ -67,7 +67,7 @@ function Sidebar({ isOpen, onFilterChange, data }) {
           <div>
             <PDFDownloadLink
               document={<AllPDF data={data} />}
-              fileName="all_payslips.pdf"
+              fileName="All_payslips.pdf"
             >
               {({ loading }) =>
                 loading ? "Generating document..." : "Download All"
