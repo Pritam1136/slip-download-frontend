@@ -56,33 +56,29 @@ body {
   padding-left: 5px;
 }
 
-html.dark body {
+.dark body {
   background-color: #333333; /* Dark background for the whole page */
 }
-html.dark .heading {
-  color: #ffffff;
-}
-html.dark .tableHead {
-  background-color: #414141;
-}
-html.dark .tableData {
-  background-color: #666666;
-  color: #ffffff;
-}
-html.dark .mainHeader {
-  background-color: #414141;
+
+.dark .heading,
+.dark .profileMenu {
   color: #ffffff;
 }
 
-html.dark .sidebar{
+.dark .tableHead,
+.dark .mainHeader,
+.dark .sidebar {
   background-color: #414141;
 }
 
-html.dark .sidebarOptions{
+.dark .tableData,
+.dark .sidebarOptions,
+.dark .optionStyles,
+.dark .profile {
   background-color: #666666;
   color: #ffffff;
 }
 
-html.dark .optionStyles{
-  background-color: #666666;
+.dark .profileMenu:hover {
+  background-color: #333333;
 }
