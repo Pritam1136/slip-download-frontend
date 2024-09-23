@@ -19,7 +19,7 @@
     @apply cursor-pointer rounded-md bg-slate-100 p-2 text-start font-sans font-semibold shadow-md;
   }
   .profileMenu {
-    @apply block px-4 py-2 hover:bg-gray-100;
+    @apply block px-4 py-2 hover:bg-gray-100 cursor-pointer;
   }
   .tableData {
     @apply border-t border-gray-300 px-4 py-2 text-sm font-bold text-gray-700;

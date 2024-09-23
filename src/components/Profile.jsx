@@ -45,7 +45,7 @@ function Profile() {
       {isOpen && (
         <div className="profile absolute right-0 z-10 mt-2 w-48 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
           <ul className="py-1 text-sm text-gray-700">
-            <li className="profileMenu" onClick={toggleMode}>
+            <li className="profileMenu" onClick={toggleMode} >
               <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} />
               <span className="ml-2">
                 {isDarkMode ? "Light Mode" : "Dark Mode"}

@@ -64,16 +64,14 @@ function Sidebar({ isOpen, onFilterChange, data }) {
           </select>
         </li>
         <li className="sidebarOptions">
-          <div>
-            <PDFDownloadLink
-              document={<AllPDF data={data} />}
-              fileName="All_payslips.pdf"
-            >
-              {({ loading }) =>
-                loading ? "Generating document..." : "Download All"
-              }
-            </PDFDownloadLink>
-          </div>
+          <PDFDownloadLink
+            document={<AllPDF data={data} />}
+            fileName="All_payslips.pdf"
+          >
+            {({ loading }) =>
+              loading ? "Generating document..." : "Download All"
+            }
+          </PDFDownloadLink>
         </li>
       </ul>
     </div>

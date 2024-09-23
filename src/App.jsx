@@ -53,6 +53,7 @@ function App() {
   };
 
   const handleFilterChange = ({ year, financialYear }) => {
+    console.log(filteredData);
     if (financialYear) {
       const { start, end, ...rest } = financialYear;
       const filtered = data.slice(1).filter((row) => {
