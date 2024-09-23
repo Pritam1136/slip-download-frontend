@@ -55,3 +55,7 @@ body {
 .inputFeild::placeholder {
   padding-left: 5px;
 }
+
+html.dark  body{
+  background-color: #333333; /* Dark background for the whole page */
+}

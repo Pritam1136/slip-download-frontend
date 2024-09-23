@@ -30,7 +30,7 @@ export default function Header({ onFilterChange }) {
             <img src="./Logo.png" className="mr-3 h-6 sm:h-9" alt="FCTS Logo" />
           </Link>
           <div>
-            <h1 className="hidden font-bold leading-9 tracking-tight text-indigo-600 lg:block lg:text-3xl">
+            <h1 className="hidden font-bold leading-9 text-[#a651eb] lg:block lg:text-4xl">
               SlipStream
             </h1>
           </div>

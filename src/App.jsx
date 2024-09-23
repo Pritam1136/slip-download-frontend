@@ -123,13 +123,13 @@ function App() {
       <Header onFilterChange={handleFilterChange} />
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:ml-64">
         <div className="sm:mx-auto sm:w-full sm:max-w-3xl">
-          <h1 className="block text-center text-3xl font-bold leading-9 tracking-tight text-indigo-600 lg:hidden">
+          <h1 className="block text-center text-4xl font-bold leading-9 tracking-tight text-[#a651eb] lg:hidden">
             SlipStream
           </h1>
           <div className="mt-8 overflow-x-auto">
             <table className="min-w-full border-collapse border border-gray-300">
               <thead>
-                <tr className="bg-indigo-600 text-white">
+                <tr className="bg-[#eec444] text-white">
                   <th className="tableHead">S.No</th>
                   <th className="tableHead">Month</th>
                   <th className="tableHead">Year</th>
