@@ -57,26 +57,26 @@ body {
 }
 
 .dark body {
-  background-color: #333333; /* Dark background for the whole page */
+  background-color: #212121; /* Dark background for the whole page */
 }
 
 .dark .heading,
 .dark .profileMenu {
-  color: #ffffff;
+  color: #f9f9f9;
 }
 
 .dark .tableHead,
 .dark .mainHeader,
 .dark .sidebar {
-  background-color: #414141;
+  background-color: #171717;
 }
 
 .dark .tableData,
 .dark .sidebarOptions,
 .dark .optionStyles,
 .dark .profile {
-  background-color: #666666;
-  color: #ffffff;
+  background-color: #2f2f2f;
+  color: #f9f9f9;
 }
 
 .dark .profileMenu:hover {
