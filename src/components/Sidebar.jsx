@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import { useState } from "react";
+import AllPDF from "../PDF/AllPDF";
 
-function Sidebar({ isOpen, onFilterChange }) {
+function Sidebar({ isOpen, onFilterChange, data }) {
   const years = Array.from(
     new Array(10),
     (_val, index) => Number(new Date().getFullYear()) - index,
@@ -61,7 +63,18 @@ function Sidebar({ isOpen, onFilterChange }) {
             ))}
           </select>
         </li>
-        <li className="sidebarOptions">Download all</li>
+        <li className="sidebarOptions">
+          <div>
+            <PDFDownloadLink
+              document={<AllPDF data={data} />}
+              fileName="all_payslips.pdf"
+            >
+              {({ loading }) =>
+                loading ? "Generating document..." : "Download All"
+              }
+            </PDFDownloadLink>
+          </div>
+        </li>
       </ul>
     </div>
   );

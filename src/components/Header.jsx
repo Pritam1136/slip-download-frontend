@@ -5,7 +5,7 @@ import Sidebar from "./Sidebar"; // Import the Sidebar component
 import { Link } from "react-router-dom";
 import { useDarkMode } from "../context/DarkModeContext"; // Import Dark Mode context
 
-export default function Header({ onFilterChange }) {
+export default function Header({ onFilterChange, data }) {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const { isDarkMode } = useDarkMode(); // Get the current mode (dark or light)
 
@@ -74,7 +74,11 @@ export default function Header({ onFilterChange }) {
           </div>
         </div>
       </nav>
-      <Sidebar isOpen={isSidebarOpen} onFilterChange={onFilterChange} />{" "}
+      <Sidebar
+        isOpen={isSidebarOpen}
+        onFilterChange={onFilterChange}
+        data={data}
+      />
       {/* Sidebar toggles on small screens */}
     </header>
   );

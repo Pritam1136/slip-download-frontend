@@ -1,18 +1,18 @@
 /* eslint-disable react/prop-types */
-import { Page, Text, View, Document, Image } from "@react-pdf/renderer";
-import { imageSrc } from "../URL";
-import EmployeeDetailPDF from "../components/PDFComponents/EmployeeDetailPDF";
-import EarningAndDeductionDetailPDF from "../components/PDFComponents/EarningAndDeductionDetailPDF";
-import OtherInfoPDF from "../components/PDFComponents/OtherInfoPDF";
+import { Document, Image, Page, Text, View } from "@react-pdf/renderer";
 import { styles } from "./style";
+import { imageSrc } from "../URL";
 
 const AllPDF = ({ data }) => {
-  const [rows] = data;
+  // Ensure data exists and skip the first row (header)
+  if (!Array.isArray(data) || data.length < 2) {
+    return null; // Handle error or return a placeholder
+  }
 
   return (
     <Document style={styles.table}>
-      {rows.map((row) => {
-        <Page size={"A4"} style={styles.page}>
+      {data.map((row, index) => (
+        <Page key={index} size={"A4"} style={styles.page}>
           <View style={styles.header}>
             <Image style={styles.image} src={imageSrc} cache={false} />
             <View>
@@ -27,17 +27,37 @@ const AllPDF = ({ data }) => {
           </View>
           <View style={styles.slip}>
             <Text>
-              Pay Slip for {row[1]} - {row[2]}
+              Pay Slip for {row[1]} - {row[2]} {/* Month and Year */}
             </Text>
           </View>
+
           {/* Employee details */}
-          <EmployeeDetailPDF data={row} />
+          <View style={styles.details}>
+            <Text>Employee Name: {row[3]}</Text>
+            <Text>Designation: {row[4]}</Text>
+            <Text>Date of Joining: {row[6]}</Text>
+            <Text>Bank Name: {row[11]}</Text>
+            <Text>Bank Account No: {row[12]}</Text>
+            <Text>PAN No: {row[13]}</Text>
+          </View>
 
           {/* Earnings and Deductions */}
-          <EarningAndDeductionDetailPDF data={row} />
-
-          {/* Other Information */}
-          <OtherInfoPDF data={row} />
+          <View style={styles.earnings}>
+            <Text>Basic: ₹{row[14]}</Text>
+            <Text>HRA: ₹{row[15]}</Text>
+            <Text>Other Allowances: ₹{row[16]}</Text>
+          </View>
+          <View style={styles.deductions}>
+            <Text>EPF: ₹{row[17]}</Text>
+            <Text>Professional Tax: ₹{row[18]}</Text>
+            <Text>Health Insurance: ₹{row[19]}</Text>
+            <Text>TDS: ₹{row[20]}</Text>
+          </View>
+          <View style={styles.netPay}>
+            <Text>Gross Salary: ₹{row[21]}</Text>
+            <Text>Reimbursement: ₹{row[22]}</Text>
+            <Text>Net Pay: ₹{row[23]}</Text>
+          </View>
 
           {/* Footer Note */}
           <View style={[styles.footerNote, { textAlign: "left" }]}>
@@ -45,12 +65,12 @@ const AllPDF = ({ data }) => {
               Note:
             </Text>
             <Text>
-              This is a computer generated payslip, hence no signature is
+              This is a computer-generated payslip, hence no signature is
               required.
             </Text>
           </View>
-        </Page>;
-      })}
+        </Page>
+      ))}
     </Document>
   );
 };

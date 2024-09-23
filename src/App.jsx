@@ -120,7 +120,7 @@ function App() {
 
   return (
     <div>
-      <Header onFilterChange={handleFilterChange} />
+      <Header onFilterChange={handleFilterChange} data={filteredData} />
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:ml-64">
         <div className="sm:mx-auto sm:w-full sm:max-w-3xl">
           <h1 className="heading block text-center text-4xl font-bold leading-9 tracking-tight text-[#a651eb] lg:hidden">
