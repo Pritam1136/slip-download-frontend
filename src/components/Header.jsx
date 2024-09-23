@@ -40,7 +40,7 @@ export default function Header({ onFilterChange, data }) {
             />
           </Link>
           <div>
-            <h1 className="heading hidden font-bold leading-9 text-[#a651eb] lg:block lg:text-4xl">
+            <h1 className="heading hidden font-black leading-9 text-[#a651eb] lg:block lg:text-4xl">
               SlipStream
             </h1>
           </div>

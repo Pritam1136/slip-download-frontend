@@ -16,13 +16,13 @@
     @apply flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600;
   }
   .sidebarOptions {
-    @apply cursor-pointer rounded-md bg-slate-100 p-2 text-start font-sans font-semibold shadow-md;
+    @apply cursor-pointer rounded-md text-gray-700 bg-[#f2ebf8] p-2 text-start font-sans font-semibold shadow-md;
   }
   .profileMenu {
     @apply block px-4 py-2 hover:bg-gray-100 cursor-pointer;
   }
   .tableData {
-    @apply border-t border-gray-300 px-4 py-2 text-sm font-bold text-gray-700;
+    @apply border-t border-gray-300 px-4 py-2 text-sm font-bold text-gray-700 font-extralight;
   }
   .tableHead {
     @apply px-4 py-2 text-left text-sm font-semibold;
@@ -43,6 +43,7 @@
 
 body {
   font-family: "poppins sans-sarif";
+  background-color: #f3eafb;
 }
 
 .backgroundSVG {
