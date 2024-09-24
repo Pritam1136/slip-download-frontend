@@ -37,22 +37,31 @@ function Profile() {
     <div className="relative" ref={menuRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="profileButton inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-300"
+        className={`profileButton inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-gray-800 ${isDarkMode ? "hover:bg-gray-700" : "hover:bg-gray-50"} focus:outline-none focus:ring-4 focus:ring-gray-300`}
       >
-        <FontAwesomeIcon color="#a651eb" icon={faUser} />
+        <FontAwesomeIcon
+          color={isDarkMode ? "#ffffff" : "#a651eb"}
+          icon={faUser}
+        />
       </button>
 
       {isOpen && (
         <div className="profile absolute right-0 z-10 mt-2 w-48 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
           <ul className="py-1 text-sm text-gray-700">
-            <li className="profileMenu" onClick={toggleMode} >
+            <li
+              className={`profileMenu ${isDarkMode ? "text-white" : "text-black"}`}
+              onClick={toggleMode}
+            >
               <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} />
               <span className="ml-2">
                 {isDarkMode ? "Light Mode" : "Dark Mode"}
               </span>
             </li>
             <li>
-              <div className="profileMenu text-red-600" onClick={logout}>
+              <div
+                className={`profileMenu ${isDarkMode ? "text-red-600" : "text-red-600"}`}
+                onClick={logout}
+              >
                 <FontAwesomeIcon icon={faRightFromBracket} />
                 <span className="ml-2">Logout</span>
               </div>
