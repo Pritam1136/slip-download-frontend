@@ -1,15 +1,14 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import Profile from "./Profile";
-import Sidebar from "./Sidebar"; // Import the Sidebar component
+import Sidebar from "./Sidebar";
 import { Link } from "react-router-dom";
-import { useDarkMode } from "../context/DarkModeContext"; // Import Dark Mode context
+import { useDarkMode } from "../context/DarkModeContext";
 
 export default function Header({ onFilterChange, data }) {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
-  const { isDarkMode } = useDarkMode(); // Get the current mode (dark or light)
+  const { isDarkMode } = useDarkMode();
 
-  // Load sidebar state from localStorage on initial render
   useEffect(() => {
     const savedSidebarState = localStorage.getItem("isSidebarOpen");
     if (savedSidebarState !== null) {
@@ -17,7 +16,6 @@ export default function Header({ onFilterChange, data }) {
     }
   }, []);
 
-  // Toggle sidebar and save state to localStorage
   const toggleSidebar = () => {
     const newState = !isSidebarOpen;
     setSidebarOpen(newState);
@@ -26,14 +24,14 @@ export default function Header({ onFilterChange, data }) {
 
   return (
     <header>
-      <nav className="mainHeader my-2 bg-slate-100 px-4 py-2.5 shadow-sm lg:px-6">
+      <nav className="mainHeader bg-slate-100 px-4 py-3 shadow-sm lg:px-6">
         <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between">
           <Link to={"/"} className="flex items-center">
             <img
               src={
                 isDarkMode
-                  ? "./forwardcode_logo_white.svg" // Light logo for dark mode
-                  : "./forwardcode_logo_black_text.svg" // Dark logo for light mode
+                  ? "./forwardcode_logo_white.svg"
+                  : "./forwardcode_logo_black_text.svg"
               }
               className="mr-3 h-6 sm:h-9"
               alt="FCTS Logo"

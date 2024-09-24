@@ -126,7 +126,7 @@ function App() {
           <h1 className="heading block text-center text-4xl font-black leading-9 tracking-tight text-[#a651eb] lg:hidden">
             SlipStream
           </h1>
-          <div className="mt-8 overflow-x-auto">
+          <div className="mt-4 overflow-x-auto">
             <table className="min-w-full border-collapse border border-gray-300">
               <thead>
                 <tr className="bg-[#a651eb] text-white">

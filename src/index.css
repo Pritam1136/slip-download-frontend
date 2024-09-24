@@ -22,10 +22,10 @@
     @apply block cursor-pointer px-4 py-2 hover:bg-gray-100;
   }
   .tableData {
-    @apply border-t border-gray-300 px-4 py-2 text-base font-extralight text-gray-700 transition-colors duration-300; /* Added transition */
+    @apply border-t border-gray-300 px-4 py-2 text-sm font-extralight text-gray-700 transition-colors duration-300; /* Added transition */
   }
   .tableHead {
-    @apply px-4 py-2 text-left text-lg font-black;
+    @apply px-4 py-2 text-left text-base font-black;
   }
   .optionStyles {
     @apply rounded-xl border-none bg-slate-100 transition-colors duration-300 focus:outline-none; /* Added transition */
