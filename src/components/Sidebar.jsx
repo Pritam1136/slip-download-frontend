@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
-import { PDFDownloadLink } from "@react-pdf/renderer";
 import { useState } from "react";
-import AllPDF from "../PDF/AllPDF";
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
+import { pdf } from "@react-pdf/renderer";
+import MyPDF from "../PDF/MyPDF";
 
 function Sidebar({ isOpen, onFilterChange, data }) {
   const years = Array.from(
@@ -28,6 +30,22 @@ function Sidebar({ isOpen, onFilterChange, data }) {
     onFilterChange({
       financialYear: { start: financialYearStart, end: financialYearEnd },
     });
+  };
+
+  const handleDownloadZip = async () => {
+    const zip = new JSZip();
+
+    for (const row of data) {
+      if (row) {
+        const pdfBlob = await pdf(<MyPDF data={[row]} />).toBlob();
+        zip.file(`Payslip_${row[1]}.pdf`, pdfBlob);
+      } else {
+        console.error("Row data is null or undefined", row);
+      }
+    }
+
+    const content = await zip.generateAsync({ type: "blob" });
+    saveAs(content, "payslips.zip");
   };
 
   return (
@@ -64,14 +82,9 @@ function Sidebar({ isOpen, onFilterChange, data }) {
           </select>
         </li>
         <li className="sidebarOptions">
-          <PDFDownloadLink
-            document={<AllPDF data={data} />}
-            fileName="All_payslips.pdf"
-          >
-            {({ loading }) =>
-              loading ? "Generating document..." : "Download All"
-            }
-          </PDFDownloadLink>
+          <button onClick={handleDownloadZip} className="btn">
+            Download All as ZIP
+          </button>
         </li>
       </ul>
     </div>
