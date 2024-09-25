@@ -16,6 +16,7 @@ function App() {
 
   const navigate = useNavigate();
 
+  // Fetch data when the component mounts
   useEffect(() => {
     async function fetchData() {
       try {
@@ -31,14 +32,18 @@ function App() {
 
         const result = await response.json();
 
+        // Assuming the data is an array of rows
         if (Array.isArray(result) && Array.isArray(result[0])) {
           setData(result);
+
+          // Default filter for the current year (e.g., 2024)
           setFilteredData(result.slice(1).filter((row) => row[2] === "2024"));
         } else {
           throw new Error("Unexpected data format");
         }
       } catch (err) {
-        setError("You are not an employee....");
+        console.error(err); // Log error
+        setError("Failed to load data. Please try again later.");
       } finally {
         setLoading(false);
       }
@@ -47,14 +52,16 @@ function App() {
     fetchData();
   }, []);
 
+  // Log out function
   const logout = () => {
     localStorage.removeItem("authToken");
     navigate("/login");
   };
 
+  // Filter data based on year or financial year
   const handleFilterChange = ({ year, financialYear }) => {
     if (financialYear) {
-      const { start, end, ...rest } = financialYear;
+      const { start, end } = financialYear;
       const filtered = data.slice(1).filter((row) => {
         const rowYear = Number(row[2].trim());
         const rowMonth = row[1]?.trim().toLowerCase();
@@ -76,11 +83,12 @@ function App() {
       });
       setFilteredData(filtered);
     } else if (year) {
-      const filtered = data.slice(1).filter((row) => row[2] === year);
+      const filtered = data.slice(1).filter((row) => row[2] === String(year)); // Ensure year is string
       setFilteredData(filtered);
     }
   };
 
+  // Download a single PDF for each row
   const handleDownload = (_rowIndex, row) => {
     return (
       <PDFDownloadLink
@@ -120,6 +128,7 @@ function App() {
 
   return (
     <div>
+      {/* Header component that contains the filtering options */}
       <Header onFilterChange={handleFilterChange} data={filteredData} />
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:ml-64">
         <div className="sm:mx-auto sm:w-full sm:max-w-3xl">
