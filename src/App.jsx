@@ -108,14 +108,14 @@ function App() {
     );
   if (error)
     return (
-      <p className="loadingText">
+      <div className="loadingText">
         {error}
         <div className="flex w-full justify-center pt-6 align-middle">
           <button className="buttonDesign max-w-20" onClick={logout}>
             Logout
           </button>
         </div>
-      </p>
+      </div>
     );
 
   return (
