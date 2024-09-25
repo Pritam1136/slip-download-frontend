@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
-import Profile from "./Profile";
 import Sidebar from "./Sidebar";
 import { Link } from "react-router-dom";
 import { useDarkMode } from "../context/DarkModeContext";
@@ -43,10 +42,6 @@ export default function Header({ onFilterChange, data }) {
             </h1>
           </div>
           <div className="flex items-center lg:order-2">
-            <div>
-              <Profile />
-            </div>
-
             <button
               data-collapse-toggle="mobile-menu-2"
               type="button"

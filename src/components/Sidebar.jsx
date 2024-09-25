@@ -5,8 +5,19 @@ import { saveAs } from "file-saver";
 import { pdf } from "@react-pdf/renderer";
 import MyPDF from "../PDF/MyPDF";
 import Select from "react-select";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faMoon,
+  faRightFromBracket,
+  faSun,
+} from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
+import { useDarkMode } from "../context/DarkModeContext";
 
 function Sidebar({ isOpen, onFilterChange, data }) {
+  const navigate = useNavigate();
+  const { isDarkMode, toggleMode } = useDarkMode();
+
   const years = Array.from(
     new Array(10),
     (_val, index) => Number(new Date().getFullYear()) - index,
@@ -56,40 +67,65 @@ function Sidebar({ isOpen, onFilterChange, data }) {
     saveAs(content, "payslips.zip");
   };
 
+  const logout = () => {
+    localStorage.removeItem("authToken");
+    navigate("/login");
+  };
+
   return (
     <div
-      className={`sidebar fixed left-0 mt-[2px] h-full w-64 bg-[#fff] p-4 shadow-2xl transition-transform duration-300 ${
+      className={`sidebar fixed left-0 mt-[2px] h-full w-64 bg-[#fff] p-4 shadow-xl transition-transform duration-300 ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       } lg:block lg:translate-x-0`}
     >
-      <ul className="space-y-4 text-black">
-        <li className="text-start font-sans font-medium">
-          <Select
-            value={selectedYear}
-            onChange={handleYearChange}
-            options={years}
-            className="optionStyles"
-          />
-        </li>
-        <li className="text-start font-sans font-medium">
-          <Select
-            value={selectedFinancialYear}
-            onChange={handleFinancialYearChange}
-            options={years.map((year) => ({
-              value: year.value,
-              label: `${year.value - 1} - ${year.value}`,
-            }))}
-            className="optionStyles"
-          />
-        </li>
-        <li
-          className="border-spacing-3 cursor-pointer rounded-[3px] border border-gray-300 p-[6px] text-start font-sans font-medium"
-          onClick={handleDownloadZip}
-        >
-          <button>Download all</button>
-        </li>
-      </ul>
-      
+      <div className="flex h-full flex-col justify-between">
+        <ul className="space-y-4 text-black">
+          <li className="text-start font-sans font-medium shadow-md">
+            <Select
+              value={selectedYear}
+              onChange={handleYearChange}
+              options={years}
+              className="optionStyles"
+            />
+          </li>
+          <li className="text-start font-sans font-medium shadow-md">
+            <Select
+              value={selectedFinancialYear}
+              onChange={handleFinancialYearChange}
+              options={years.map((year) => ({
+                value: year.value,
+                label: `${year.value - 1} - ${year.value}`,
+              }))}
+              className="optionStyles"
+            />
+          </li>
+          <li
+            className="border-sl-300 border-spacing-3 cursor-pointer rounded-[3px] border p-[6px] text-start font-sans font-medium shadow-md hover:border-gray-400"
+            onClick={handleDownloadZip}
+          >
+            <button>Download all</button>
+          </li>
+        </ul>
+
+        <div className="mb-20">
+          <div
+            className={`profileMenu ${isDarkMode ? "text-red-600" : "text-red-600"}`}
+            onClick={logout}
+          >
+            <FontAwesomeIcon icon={faRightFromBracket} />
+            <span className="ml-2">Logout</span>
+          </div>
+          <div
+            className={`profileMenu ${isDarkMode ? "text-white" : "text-black"}`}
+            onClick={toggleMode}
+          >
+            <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} />
+            <span className="ml-2">
+              {isDarkMode ? "Light Mode" : "Dark Mode"}
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
