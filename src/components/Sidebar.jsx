@@ -10,9 +10,12 @@ function Sidebar({ isOpen, onFilterChange, data }) {
   const years = Array.from(
     new Array(10),
     (_val, index) => Number(new Date().getFullYear()) - index,
-  ).map(year => ({ value: year, label: year }));
+  ).map((year) => ({ value: year, label: year }));
 
-  const [selectedYear, setSelectedYear] = useState({ value: 2024, label: "2024" });
+  const [selectedYear, setSelectedYear] = useState({
+    value: 2024,
+    label: "2024",
+  });
   const [selectedFinancialYear, setSelectedFinancialYear] = useState({
     value: 2024,
     label: "2023 - 2024",
@@ -55,12 +58,12 @@ function Sidebar({ isOpen, onFilterChange, data }) {
 
   return (
     <div
-      className={`sidebar fixed left-0 top-0 mt-[74px] h-full w-64 bg-[#fff] p-4 shadow-2xl transition-transform duration-300 lg:mt-[78px] ${
+      className={`sidebar fixed left-0 mt-[2px] h-full w-64 bg-[#fff] p-4 shadow-2xl transition-transform duration-300 ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       } lg:block lg:translate-x-0`}
     >
       <ul className="space-y-4 text-black">
-        <li className="sidebarOptions">
+        <li className="text-start font-sans font-medium">
           <Select
             value={selectedYear}
             onChange={handleYearChange}
@@ -68,23 +71,25 @@ function Sidebar({ isOpen, onFilterChange, data }) {
             className="optionStyles"
           />
         </li>
-        <li className="sidebarOptions">
+        <li className="text-start font-sans font-medium">
           <Select
             value={selectedFinancialYear}
             onChange={handleFinancialYearChange}
-            options={years.map(year => ({
+            options={years.map((year) => ({
               value: year.value,
               label: `${year.value - 1} - ${year.value}`,
             }))}
             className="optionStyles"
           />
         </li>
-        <li className="sidebarOptions">
-          <button onClick={handleDownloadZip} className="btn">
-            Download All as ZIP
-          </button>
+        <li
+          className="border-spacing-3 cursor-pointer rounded-[3px] border border-gray-300 p-[6px] text-start font-sans font-medium"
+          onClick={handleDownloadZip}
+        >
+          <button>Download all</button>
         </li>
       </ul>
+      
     </div>
   );
 }

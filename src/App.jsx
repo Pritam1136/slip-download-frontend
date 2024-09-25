@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import MyPDF from "./PDF/MyPDF";
 import { useEffect, useState } from "react";
