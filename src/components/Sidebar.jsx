@@ -80,7 +80,7 @@ function Sidebar({ isOpen, onFilterChange, data }) {
     >
       <div className="flex h-full flex-col justify-between">
         <ul className="space-y-4 text-black">
-          <li className="text-start font-sans font-medium shadow-md">
+          <li className="mx-3 font-sans font-medium shadow-md">
             <Select
               value={selectedYear}
               onChange={handleYearChange}
@@ -88,7 +88,7 @@ function Sidebar({ isOpen, onFilterChange, data }) {
               className="optionStyles"
             />
           </li>
-          <li className="text-start font-sans font-medium shadow-md">
+          <li className="mx-3 font-sans font-medium shadow-md">
             <Select
               value={selectedFinancialYear}
               onChange={handleFinancialYearChange}
@@ -100,23 +100,23 @@ function Sidebar({ isOpen, onFilterChange, data }) {
             />
           </li>
           <li
-            className="border-sl-300 border-spacing-3 cursor-pointer rounded-[3px] border p-[6px] text-start font-sans font-medium shadow-md hover:border-gray-400"
+            className="border-sl-300 mx-3 border-spacing-3 cursor-pointer rounded-[3px] border p-[6px] font-sans font-medium shadow-md hover:border-gray-400"
             onClick={handleDownloadZip}
           >
             <button>Download all</button>
           </li>
         </ul>
 
-        <div className="mb-20">
+        <div className="mb-20 space-y-2">
           <div
-            className={`profileMenu ${isDarkMode ? "text-red-600" : "text-red-600"}`}
+            className={`mx-3 cursor-pointer py-2 hover:bg-gray-100 ${isDarkMode ? "text-red-600" : "text-red-600"}`}
             onClick={logout}
           >
             <FontAwesomeIcon icon={faRightFromBracket} />
             <span className="ml-2">Logout</span>
           </div>
           <div
-            className={`profileMenu ${isDarkMode ? "text-white" : "text-black"}`}
+            className={`mx-3 cursor-pointer py-2 hover:bg-gray-100 ${isDarkMode ? "text-white" : "text-black"}`}
             onClick={toggleMode}
           >
             <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} />
