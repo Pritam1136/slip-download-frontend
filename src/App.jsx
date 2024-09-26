@@ -3,7 +3,7 @@ import MyPDF from "./PDF/MyPDF";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { url } from "./URL";
-import Header from "./Components/Header";
+import Header from "./components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowDownLong,
