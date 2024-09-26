@@ -53,7 +53,7 @@ function Login() {
     return (
       <div
         style={{
-          marginTop: "25%",
+          height: "100vh",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -67,10 +67,10 @@ function Login() {
             borderRadius: ["0%", "0%", "50%", "50%", "0%"],
           }}
           transition={{
-            duration: 2,
+            duration: 1.7,
             ease: "easeInOut",
             times: [0, 0.2, 0.5, 0.8, 1],
-            repeatDelay: 1,
+            repeatDelay: 0.5,
             repeat: Infinity,
           }}
         />
