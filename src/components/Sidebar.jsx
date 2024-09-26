@@ -57,7 +57,7 @@ function Sidebar({ isOpen, onFilterChange, data }) {
     for (const row of data) {
       if (row) {
         const pdfBlob = await pdf(<MyPDF data={[row]} />).toBlob();
-        zip.file(`Payslip_${row[1]}.pdf`, pdfBlob);
+        zip.file(`Payslip_${row[1]}_${row[2]}.pdf`, pdfBlob);
       } else {
         console.error("Row data is null or undefined", row);
       }
