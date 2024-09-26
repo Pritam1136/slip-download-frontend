@@ -10,6 +10,7 @@ import {
   faSpinner,
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
+import { motion } from "framer-motion";
 
 function App() {
   const [data, setData] = useState([]);
@@ -113,9 +114,30 @@ function App() {
 
   if (loading)
     return (
-      <p className="loadingText">
-        <FontAwesomeIcon icon={faSpinner} spin />
-      </p>
+      <div
+        style={{
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <motion.div
+          className="box"
+          animate={{
+            scale: [1, 2, 2, 1, 1],
+            rotate: [0, 0, 180, 180, 0],
+            borderRadius: ["0%", "0%", "50%", "50%", "0%"],
+          }}
+          transition={{
+            duration: 1.7,
+            ease: "easeInOut",
+            times: [0, 0.2, 0.5, 0.8, 1],
+            repeat: Infinity,
+            repeatDelay: 1,
+          }}
+        />
+      </div>
     );
   if (error)
     return (

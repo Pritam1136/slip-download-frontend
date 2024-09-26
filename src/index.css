@@ -16,7 +16,7 @@
     @apply flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600;
   }
   .tableData {
-    @apply border-t border-gray-300 px-4 py-2 text-sm font-extralight text-gray-700 transition-colors text-center duration-300; /* Added transition */
+    @apply border-t border-gray-300 px-4 py-2 text-center text-sm font-extralight text-gray-700 transition-colors duration-300; /* Added transition */
   }
   .tableHead {
     @apply px-4 py-2 text-center text-base font-black;
@@ -79,4 +79,10 @@ body {
 
 .dark .profileMenu:hover {
   background-color: #333333;
+}
+
+.box {
+  width: 150px;
+  height: 150px;
+  background: #a651eb;
 }

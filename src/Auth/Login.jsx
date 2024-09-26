@@ -2,8 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { url } from "../URL";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { motion } from "framer-motion";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -50,12 +49,34 @@ function Login() {
     }
   };
 
-  if (loading)
+  if (loading) {
     return (
-      <p className="loadingText backgroundSVG h-screen">
-        <FontAwesomeIcon icon={faSpinner} spin />
-      </p>
+      <div
+        style={{
+          marginTop: "25%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <motion.div
+          className="box"
+          animate={{
+            scale: [1, 2, 2, 1, 1],
+            rotate: [0, 0, 180, 180, 0],
+            borderRadius: ["0%", "0%", "50%", "50%", "0%"],
+          }}
+          transition={{
+            duration: 2,
+            ease: "easeInOut",
+            times: [0, 0.2, 0.5, 0.8, 1],
+            repeatDelay: 1,
+            repeat: Infinity,
+          }}
+        />
+      </div>
     );
+  }
 
   return (
     <div className="backgroundSVG flex h-screen flex-1 flex-col justify-center px-6 py-12 align-middle lg:px-8">

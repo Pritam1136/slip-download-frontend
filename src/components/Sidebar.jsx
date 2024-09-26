@@ -74,7 +74,7 @@ function Sidebar({ isOpen, onFilterChange, data }) {
 
   return (
     <div
-      className={`sidebar fixed left-0 mt-[2px] h-full w-64 bg-[#fff] p-4 shadow-xl transition-transform duration-300 ${
+      className={`sidebar fixed left-0 mt-[2px] h-full w-64 bg-[#fff] p-4 shadow-xl transition-transform duration-700 ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       } lg:block lg:translate-x-0`}
     >
