@@ -86,6 +86,7 @@ function Sidebar({ isOpen, onFilterChange, data }) {
               onChange={handleYearChange}
               options={years}
               className="optionStyles"
+              isSearchable={false}
             />
           </li>
           <li className="mx-3 font-sans font-medium shadow-md">
@@ -97,6 +98,7 @@ function Sidebar({ isOpen, onFilterChange, data }) {
                 label: `${year.value - 1} - ${year.value}`,
               }))}
               className="optionStyles"
+              isSearchable={false}
             />
           </li>
           <li
