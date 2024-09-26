@@ -13,6 +13,7 @@ function Login() {
   const navigate = useNavigate();
 
   const sendOtp = async () => {
+    setError(null);
     try {
       if (!email) throw new Error("Email is required");
       setLoading(true);
