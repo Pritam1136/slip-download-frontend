@@ -5,17 +5,21 @@ import { useNavigate } from "react-router-dom";
 import { url } from "./URL";
 import Header from "./Components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDownLong, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowDownLong,
+  faSpinner,
+  faCheck,
+} from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [filteredData, setFilteredData] = useState([]);
+  const [downloadedRow, setDownloadedRow] = useState(null); // Track downloaded row
 
   const navigate = useNavigate();
 
-  // Fetch data when the component mounts
   useEffect(() => {
     async function fetchData() {
       try {
@@ -31,17 +35,14 @@ function App() {
 
         const result = await response.json();
 
-        // Assuming the data is an array of rows
         if (Array.isArray(result) && Array.isArray(result[0])) {
           setData(result);
-
-          // Default filter for the current year (e.g., 2024)
           setFilteredData(result.slice(1).filter((row) => row[2] === "2024"));
         } else {
           throw new Error("Unexpected data format");
         }
       } catch (err) {
-        console.error(err); // Log error
+        console.error(err);
         setError("Failed to load data. Please try again later.");
       } finally {
         setLoading(false);
@@ -51,13 +52,11 @@ function App() {
     fetchData();
   }, []);
 
-  // Log out function
   const logout = () => {
     localStorage.removeItem("authToken");
     navigate("/login");
   };
 
-  // Filter data based on year or financial year
   const handleFilterChange = ({ year, financialYear }) => {
     if (financialYear) {
       const { start, end } = financialYear;
@@ -82,21 +81,26 @@ function App() {
       });
       setFilteredData(filtered);
     } else if (year) {
-      const filtered = data.slice(1).filter((row) => row[2] === String(year)); // Ensure year is string
+      const filtered = data.slice(1).filter((row) => row[2] === String(year));
       setFilteredData(filtered);
     }
   };
 
-  // Download a single PDF for each row
-  const handleDownload = (_rowIndex, row) => {
+  const handleDownload = (rowIndex, row) => {
     return (
       <PDFDownloadLink
         document={<MyPDF data={[row]} />}
         fileName={`PaySlip_${row[1]}_${row[2]}.pdf`}
+        onClick={() => {
+          setDownloadedRow(rowIndex);
+          setTimeout(() => setDownloadedRow(null), 5000);
+        }}
       >
         {({ loading }) =>
           loading ? (
             <FontAwesomeIcon icon={faSpinner} spin />
+          ) : downloadedRow === rowIndex ? (
+            <FontAwesomeIcon icon={faCheck} className="text-green-500" />
           ) : (
             <span className="hover:text-gray-500">
               Download <FontAwesomeIcon icon={faArrowDownLong} />
@@ -127,7 +131,6 @@ function App() {
 
   return (
     <div>
-      {/* Header component that contains the filtering options */}
       <Header onFilterChange={handleFilterChange} data={filteredData} />
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:ml-64">
         <div className="sm:mx-auto sm:w-full sm:max-w-3xl">
