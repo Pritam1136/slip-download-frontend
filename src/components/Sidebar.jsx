@@ -97,6 +97,18 @@ function Sidebar({ isOpen, onFilterChange, data }) {
       maxHeight: "250px",
       overflowY: "auto",
     }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected
+        ? isDarkMode
+          ? "#2d3748" // Selected option background in dark mode
+          : "#1e90ff" // Selected option background in light mode
+        : "transparent",
+      color: isDarkMode ? "black" : "black", // Ensure text remains black in both modes
+      "&:hover": {
+        backgroundColor: isDarkMode ? "#97a2b5" : "#e2e8f0", // Hover effect for dark mode
+      },
+    }),
   };
 
   return (
