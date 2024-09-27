@@ -4,7 +4,7 @@ import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import { pdf } from "@react-pdf/renderer";
 import MyPDF from "../PDF/MyPDF";
-import Select from "react-select";
+import Select, { components } from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMoon,
@@ -34,7 +34,6 @@ function Sidebar({ isOpen, onFilterChange, data }) {
 
   const handleYearChange = (selectedOption) => {
     setSelectedYear(selectedOption);
-    // Pass the year value (not the whole object) to onFilterChange
     onFilterChange({ year: selectedOption.value });
   };
 
@@ -45,7 +44,6 @@ function Sidebar({ isOpen, onFilterChange, data }) {
     const financialYearStart = financialYear - 1;
     const financialYearEnd = financialYear;
 
-    // Pass the financial year start and end to onFilterChange
     onFilterChange({
       financialYear: { start: financialYearStart, end: financialYearEnd },
     });
@@ -72,6 +70,22 @@ function Sidebar({ isOpen, onFilterChange, data }) {
     navigate("/login");
   };
 
+  // Custom MenuList for custom scrollbar
+  const CustomMenuList = (props) => (
+    <components.MenuList {...props} className="custom-scrollbar">
+      {props.children}
+    </components.MenuList>
+  );
+
+  // Custom styles for the Select components
+  const customStyles = {
+    menuList: (provided) => ({
+      ...provided,
+      maxHeight: "250px",
+      overflowY: "auto",
+    }),
+  };
+
   return (
     <div
       className={`sidebar fixed left-0 mt-[2px] h-full w-64 bg-[#fff] p-4 shadow-xl transition-transform duration-700 ${
@@ -85,7 +99,9 @@ function Sidebar({ isOpen, onFilterChange, data }) {
               value={selectedYear}
               onChange={handleYearChange}
               options={years}
-              className="optionStyles"
+              className={`optionStyles ${isDarkMode ? "bg-gray-700" : "bg-slate-100"}`}
+              components={{ MenuList: CustomMenuList }}
+              styles={customStyles}
               isSearchable={false}
             />
           </li>
@@ -98,11 +114,13 @@ function Sidebar({ isOpen, onFilterChange, data }) {
                 label: `${year.value - 1} - ${year.value}`,
               }))}
               className="optionStyles"
+              components={{ MenuList: CustomMenuList }}
+              styles={customStyles}
               isSearchable={false}
             />
           </li>
           <li
-            className="border-sl-300 mx-3 border-spacing-3 cursor-pointer rounded-[3px] border p-[6px] font-sans font-medium shadow-md hover:border-gray-400"
+            className={`bg-slate-100 mx-3 border-spacing-3 cursor-pointer rounded-[3px] border p-[6px] font-sans font-medium shadow-md`}
             onClick={handleDownloadZip}
           >
             <button>Download all</button>
@@ -111,14 +129,14 @@ function Sidebar({ isOpen, onFilterChange, data }) {
 
         <div className="mb-20 space-y-2">
           <div
-            className={`mx-3 cursor-pointer py-2 hover:bg-gray-100 ${isDarkMode ? "text-red-600" : "text-red-600"}`}
+            className={`mx-3 cursor-pointer rounded-md p-2 ${isDarkMode ? "hover:bg-gray-700" : "hover:bg-gray-100"} text-red-600`}
             onClick={logout}
           >
             <FontAwesomeIcon icon={faRightFromBracket} />
             <span className="ml-2">Logout</span>
           </div>
           <div
-            className={`mx-3 cursor-pointer py-2 hover:bg-gray-100 ${isDarkMode ? "text-white" : "text-black"}`}
+            className={`mx-3 cursor-pointer rounded-md p-2 ${isDarkMode ? "hover:bg-gray-700" : "hover:bg-gray-100"} ${isDarkMode ? "text-white" : "text-black"}`}
             onClick={toggleMode}
           >
             <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} />
