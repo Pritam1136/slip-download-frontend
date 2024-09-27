@@ -22,7 +22,7 @@
     @apply px-4 py-2 text-center text-base font-black;
   }
   .optionStyles {
-    @apply rounded-xl border-none  transition-colors duration-300 focus:outline-none; /* Added transition */
+    @apply rounded-xl border-none transition-colors duration-300 focus:outline-none; /* Added transition */
   }
 }
 
@@ -72,27 +72,28 @@ body {
   background: #f1f1f1;
 }
 
-.dark body {
-  background-color: #212121;
-  color: #f9f9f9;
+/* Dark theme */
+.dark body,
+.dark .tableHead {
+  background-color: #1b1b1d;
+  color: #e2dfdc;
 }
 
 .dark .heading {
-  color: #f9f9f9;
+  color: #e2dfdc;
 }
 
-.dark .tableHead,
 .dark .mainHeader,
 .dark .sidebar {
-  background-color: #171717;
+  background-color: #282a36;
 }
 
 .dark .tableData,
 .dark .sidebarOptions,
 .dark .optionStyles,
 .dark .profile {
-  background-color: #2f2f2f;
-  color: #f9f9f9;
+  background-color: #282a36;
+  color: #e2dfdc;
 }
 
 .dark .profileMenu:hover {
