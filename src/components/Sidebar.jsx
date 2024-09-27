@@ -10,7 +10,7 @@ import {
   faMoon,
   faRightFromBracket,
   faSun,
-  faCheck,
+  faCheckCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useDarkMode } from "../context/DarkModeContext";
@@ -84,7 +84,7 @@ function Sidebar({ isOpen, onFilterChange, data }) {
   const CustomOption = (props) => (
     <components.Option {...props}>
       {props.isSelected && (
-        <FontAwesomeIcon icon={faCheck} className="mr-2 text-blue-50" />
+        <FontAwesomeIcon icon={faCheckCircle} className="mr-2 text-blue-50" />
       )}
       {props.label}
     </components.Option>
