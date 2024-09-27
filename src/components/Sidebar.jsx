@@ -13,6 +13,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useDarkMode } from "../context/DarkModeContext";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Sidebar({ isOpen, onFilterChange, data }) {
   const navigate = useNavigate();
@@ -56,6 +58,7 @@ function Sidebar({ isOpen, onFilterChange, data }) {
       if (row) {
         const pdfBlob = await pdf(<MyPDF data={[row]} />).toBlob();
         zip.file(`Payslip_${row[1]}_${row[2]}.pdf`, pdfBlob);
+        toast.success(`Slip for ${row[1]} ${row[2]} downloaded!`);
       } else {
         console.error("Row data is null or undefined", row);
       }
@@ -120,7 +123,7 @@ function Sidebar({ isOpen, onFilterChange, data }) {
             />
           </li>
           <li
-            className={`bg-slate-100 mx-3 border-spacing-3 cursor-pointer rounded-[3px] border p-[6px] font-sans font-medium shadow-md`}
+            className={`mx-3 border-spacing-3 cursor-pointer rounded-[3px] border bg-slate-100 p-[6px] font-sans font-medium shadow-md`}
             onClick={handleDownloadZip}
           >
             <button>Download all</button>
@@ -136,7 +139,7 @@ function Sidebar({ isOpen, onFilterChange, data }) {
             <span className="ml-2">Logout</span>
           </div>
           <div
-            className={`mx-3 cursor-pointer rounded-md p-2 ${isDarkMode ? "hover:bg-gray-700" : "hover:bg-gray-100"} ${isDarkMode ? "text-white" : "text-black"}`}
+            className={`mx-3 cursor-pointer rounded-md p-2 ${isDarkMode ? "hover:bg-gray-700" : "hover:bg-slate-100"} ${isDarkMode ? "text-white" : "text-black"}`}
             onClick={toggleMode}
           >
             <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} />

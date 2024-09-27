@@ -11,6 +11,8 @@ import {
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [data, setData] = useState([]);
@@ -94,6 +96,7 @@ function App() {
         fileName={`PaySlip_${row[1]}_${row[2]}.pdf`}
         onClick={() => {
           setDownloadedRow(rowIndex);
+          toast.success(`Slip for ${row[1]} ${row[2]} downloaded!`);
           setTimeout(() => setDownloadedRow(null), 5000);
         }}
       >
@@ -214,6 +217,7 @@ function App() {
           </div>
         </div>
       </div>
+      <ToastContainer position="bottom-center" autoClose={5000} />
     </div>
   );
 }
