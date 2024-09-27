@@ -162,6 +162,11 @@ function Sidebar({ isOpen, onFilterChange, data }) {
           >
             <button>Download all</button>
           </li>
+          <li
+            className={`mx-3 border-spacing-3 cursor-pointer rounded-[3px] border bg-slate-100 p-[6px] font-sans font-medium shadow-md`}
+          >
+            <button>select</button>
+          </li>
         </ul>
 
         <div className="mb-20 space-y-2">
@@ -188,3 +193,18 @@ function Sidebar({ isOpen, onFilterChange, data }) {
 }
 
 export default Sidebar;
+
+{
+  /* <Modal
+          isOpen={isModalOpen}
+          onRequestClose={handleCloseModal}
+          contentLabel="Select Months"
+          className="modal" // Add your custom modal styles here
+        >
+          <h2>Select Months to Download</h2>
+          <button onClick={() => handleMonthSelection(3)}>3 Months</button>
+          <button onClick={() => handleMonthSelection(6)}>6 Months</button>
+          <button onClick={() => handleMonthSelection(9)}>9 Months</button>
+          <button onClick={handleCloseModal}>Close</button>
+        </Modal> */
+}
