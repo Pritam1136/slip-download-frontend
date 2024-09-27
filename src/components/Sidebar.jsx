@@ -92,6 +92,18 @@ function Sidebar({ isOpen, onFilterChange, data }) {
 
   // Custom styles for the Select components
   const customStyles = {
+    control: (provided, state) => ({
+      ...provided,
+      borderColor: !isDarkMode && state.isFocused ? "#a651eb" : "#fff", // Change border color on focus in light mode
+      boxShadow:
+        !isDarkMode && state.isFocused
+          ? `0 0 0 1px #a651eb`
+          : provided.boxShadow, // Focus shadow only in light mode
+      "&:hover": {
+        borderColor:
+          !isDarkMode && state.isFocused ? "#a651eb" : provided.borderColor, // Hover color for light mode when focused
+      },
+    }),
     menuList: (provided) => ({
       ...provided,
       maxHeight: "250px",
@@ -101,12 +113,12 @@ function Sidebar({ isOpen, onFilterChange, data }) {
       ...provided,
       backgroundColor: state.isSelected
         ? isDarkMode
-          ? "#2d3748" // Selected option background in dark mode
-          : "#1e90ff" // Selected option background in light mode
+          ? "#2d3748"
+          : "#a651eb"
         : "transparent",
-      color: isDarkMode ? "black" : "black", // Ensure text remains black in both modes
+      color: isDarkMode ? "black" : "black",
       "&:hover": {
-        backgroundColor: isDarkMode ? "#97a2b5" : "#e2e8f0", // Hover effect for dark mode
+        backgroundColor: "#e2e8f0",
       },
     }),
   };
