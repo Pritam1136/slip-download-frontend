@@ -10,6 +10,7 @@ import {
   faMoon,
   faRightFromBracket,
   faSun,
+  faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useDarkMode } from "../context/DarkModeContext";
@@ -53,12 +54,10 @@ function Sidebar({ isOpen, onFilterChange, data }) {
 
   const handleDownloadZip = async () => {
     const zip = new JSZip();
-
     for (const row of data) {
       if (row) {
         const pdfBlob = await pdf(<MyPDF data={[row]} />).toBlob();
         zip.file(`Payslip_${row[1]}_${row[2]}.pdf`, pdfBlob);
-        toast.success(`Slip for ${row[1]} ${row[2]} downloaded!`);
       } else {
         console.error("Row data is null or undefined", row);
       }
@@ -66,6 +65,7 @@ function Sidebar({ isOpen, onFilterChange, data }) {
 
     const content = await zip.generateAsync({ type: "blob" });
     saveAs(content, "payslips.zip");
+    toast.success(`payslip downloaded`);
   };
 
   const logout = () => {
@@ -78,6 +78,16 @@ function Sidebar({ isOpen, onFilterChange, data }) {
     <components.MenuList {...props} className="custom-scrollbar">
       {props.children}
     </components.MenuList>
+  );
+
+  // Custom Option to display tick mark
+  const CustomOption = (props) => (
+    <components.Option {...props}>
+      {props.isSelected && (
+        <FontAwesomeIcon icon={faCheck} className="mr-2 text-blue-50" />
+      )}
+      {props.label}
+    </components.Option>
   );
 
   // Custom styles for the Select components
@@ -103,7 +113,7 @@ function Sidebar({ isOpen, onFilterChange, data }) {
               onChange={handleYearChange}
               options={years}
               className={`optionStyles ${isDarkMode ? "bg-gray-700" : "bg-slate-100"}`}
-              components={{ MenuList: CustomMenuList }}
+              components={{ MenuList: CustomMenuList, Option: CustomOption }}
               styles={customStyles}
               isSearchable={false}
             />
@@ -117,7 +127,7 @@ function Sidebar({ isOpen, onFilterChange, data }) {
                 label: `${year.value - 1} - ${year.value}`,
               }))}
               className="optionStyles"
-              components={{ MenuList: CustomMenuList }}
+              components={{ MenuList: CustomMenuList, Option: CustomOption }}
               styles={customStyles}
               isSearchable={false}
             />
