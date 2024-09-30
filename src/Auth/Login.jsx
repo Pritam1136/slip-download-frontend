@@ -9,7 +9,7 @@ function Login() {
   const [otp, setOtp] = useState("");
   const [step, setStep] = useState(1);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const sendOtp = async () => {
@@ -52,9 +52,15 @@ function Login() {
 
   if (loading) {
     return (
-      <>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <TextSpinnerLoader />
-      </>
+      </div>
     );
   }
 

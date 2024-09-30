@@ -10,9 +10,9 @@ import {
   faSpinner,
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
-import { motion } from "framer-motion";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import TextSpinnerLoader from "./Components/TextSpinner/TextSpinner";
 
 function App() {
   const [data, setData] = useState([]);
@@ -119,40 +119,12 @@ function App() {
     return (
       <div
         style={{
-          height: "100vh",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-        <motion.div
-          className="box"
-          animate={{
-            scale: [1, 1.5, 1],
-            rotate: [0, 0, 180, 180, 0],
-            borderRadius: [
-              "0%",
-              "10%",
-              "20%",
-              "30%",
-              "40%",
-              "50%",
-              "50%",
-              "40%",
-              "30%",
-              "20%",
-              "10%",
-              "0%",
-            ],
-          }}
-          transition={{
-            duration: 1.7,
-            ease: "circInOut",
-            times: [0, 0.2, 0.5, 0.8, 1],
-            repeat: Infinity,
-            repeatDelay: 0.5,
-          }}
-        />
+        <TextSpinnerLoader />
       </div>
     );
   if (error)
