@@ -97,13 +97,10 @@ function Login() {
       <div className="container rounded-2xl bg-white p-10 drop-shadow-2xl">
         <div className="my-2 flex justify-center py-2 align-middle">
           <img
-            src="https://media.licdn.com/dms/image/v2/C4D0BAQH6fJz1s57_eA/company-logo_200_200/company-logo_200_200/0/1630509348990/forwardcode_techstudio_logo?e=1733961600&v=beta&t=RgWEdt4YnKk8_oIG7LCGqhbfGeahg7QswWTmFXmcxjg"
+            src="./forwardcode_logo_black_text.svg"
             className="mr-3 h-6 sm:h-9"
             alt="FCTS Logo"
           />
-          <span className="self-center whitespace-nowrap text-xl font-bold text-indigo-600">
-            FCTS
-          </span>
         </div>
         <div>
           <h2 className="text-center text-3xl font-bold leading-9 tracking-tight text-indigo-600">
