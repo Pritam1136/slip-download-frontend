@@ -15,6 +15,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useDarkMode } from "../context/DarkModeContext";
 import { toast } from "react-toastify";
+import  Modal  from "react-modal";
 import "react-toastify/dist/ReactToastify.css";
 
 function Sidebar({ isOpen, onFilterChange, data }) {
@@ -34,6 +35,8 @@ function Sidebar({ isOpen, onFilterChange, data }) {
     value: 2024,
     label: "2023 - 2024",
   });
+
+  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
 
   const handleYearChange = (selectedOption) => {
     setSelectedYear(selectedOption);
@@ -71,6 +74,21 @@ function Sidebar({ isOpen, onFilterChange, data }) {
   const logout = () => {
     localStorage.removeItem("authToken");
     navigate("/login");
+  };
+
+  // Open modal function
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  // Close modal function
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleMonthSelection = (months) => {
+    console.log(`Download data for ${months} months.`);
+    closeModal(); // Close the modal after selecting the months
   };
 
   // Custom MenuList for custom scrollbar
@@ -164,6 +182,7 @@ function Sidebar({ isOpen, onFilterChange, data }) {
           </li>
           <li
             className={`mx-3 border-spacing-3 cursor-pointer rounded-[3px] border bg-slate-100 p-[6px] font-sans font-medium shadow-md`}
+            onClick={openModal}
           >
             <button>select</button>
           </li>
@@ -188,23 +207,22 @@ function Sidebar({ isOpen, onFilterChange, data }) {
           </div>
         </div>
       </div>
+
+      {/* Modal for month selection */}
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Select Months"
+        className="modal" // Add your custom modal styles here
+      >
+        <h2>Select Months to Download</h2>
+        <button onClick={() => handleMonthSelection(3)}>3 Months</button>
+        <button onClick={() => handleMonthSelection(6)}>6 Months</button>
+        <button onClick={() => handleMonthSelection(9)}>9 Months</button>
+        <button onClick={closeModal}>Close</button>
+      </Modal>
     </div>
   );
 }
 
 export default Sidebar;
-
-{
-  /* <Modal
-          isOpen={isModalOpen}
-          onRequestClose={handleCloseModal}
-          contentLabel="Select Months"
-          className="modal" // Add your custom modal styles here
-        >
-          <h2>Select Months to Download</h2>
-          <button onClick={() => handleMonthSelection(3)}>3 Months</button>
-          <button onClick={() => handleMonthSelection(6)}>6 Months</button>
-          <button onClick={() => handleMonthSelection(9)}>9 Months</button>
-          <button onClick={handleCloseModal}>Close</button>
-        </Modal> */
-}
