@@ -15,7 +15,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useDarkMode } from "../context/DarkModeContext";
 import { toast } from "react-toastify";
-import  Modal  from "react-modal";
+import Modal from "react-modal";
 import "react-toastify/dist/ReactToastify.css";
 
 function Sidebar({ isOpen, onFilterChange, data }) {
@@ -213,13 +213,40 @@ function Sidebar({ isOpen, onFilterChange, data }) {
         isOpen={isModalOpen}
         onRequestClose={closeModal}
         contentLabel="Select Months"
-        className="modal" // Add your custom modal styles here
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+        overlayClassName="fixed inset-0 bg-black bg-opacity-50"
       >
-        <h2>Select Months to Download</h2>
-        <button onClick={() => handleMonthSelection(3)}>3 Months</button>
-        <button onClick={() => handleMonthSelection(6)}>6 Months</button>
-        <button onClick={() => handleMonthSelection(9)}>9 Months</button>
-        <button onClick={closeModal}>Close</button>
+        <div className="w-11/12 max-w-md rounded-lg bg-white p-6 shadow-lg">
+          <h2 className="mb-4 text-lg font-semibold">
+            Select Months to Download
+          </h2>
+          <div className="mb-4 flex justify-between">
+            <button
+              onClick={() => handleMonthSelection(3)}
+              className="rounded bg-blue-500 px-4 py-2 text-white transition duration-200 hover:bg-blue-600"
+            >
+              3 Months
+            </button>
+            <button
+              onClick={() => handleMonthSelection(6)}
+              className="rounded bg-blue-500 px-4 py-2 text-white transition duration-200 hover:bg-blue-600"
+            >
+              6 Months
+            </button>
+            <button
+              onClick={() => handleMonthSelection(9)}
+              className="rounded bg-blue-500 px-4 py-2 text-white transition duration-200 hover:bg-blue-600"
+            >
+              9 Months
+            </button>
+          </div>
+          <button
+            onClick={closeModal}
+            className="w-full rounded bg-gray-300 px-4 py-2 text-gray-800 transition duration-200 hover:bg-gray-400"
+          >
+            Close
+          </button>
+        </div>
       </Modal>
     </div>
   );
