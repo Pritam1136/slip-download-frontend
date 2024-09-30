@@ -57,18 +57,22 @@ function Sidebar({ isOpen, onFilterChange, data }) {
 
   const handleDownloadZip = async () => {
     const zip = new JSZip();
-    for (const row of data) {
-      if (row) {
-        const pdfBlob = await pdf(<MyPDF data={[row]} />).toBlob();
-        zip.file(`Payslip_${row[1]}_${row[2]}.pdf`, pdfBlob);
-      } else {
-        console.error("Row data is null or undefined", row);
+    if (data > 0) {
+      for (const row of data) {
+        if (row) {
+          const pdfBlob = await pdf(<MyPDF data={[row]} />).toBlob();
+          zip.file(`Payslip_${row[1]}_${row[2]}.pdf`, pdfBlob);
+        } else {
+          console.error("Row data is null or undefined", row);
+        }
       }
-    }
 
-    const content = await zip.generateAsync({ type: "blob" });
-    saveAs(content, "payslips.zip");
-    toast.success(`payslip downloaded`);
+      const content = await zip.generateAsync({ type: "blob" });
+      saveAs(content, "payslips.zip");
+      toast.success(`payslip downloaded`);
+    } else {
+      toast.warn("No payslips available.");
+    }
   };
 
   const logout = () => {
