@@ -86,9 +86,34 @@ function Sidebar({ isOpen, onFilterChange, data }) {
     setIsModalOpen(false);
   };
 
-  const handleMonthSelection = (months) => {
-    console.log(`Download data for ${months} months.`);
+  const handleMonthSelection = (count) => {
+    // Take the first 'count' rows from the data
+    const selectedData = data.slice(0, count);
+
+    // Check if there is data to download
+    if (selectedData.length > 0) {
+      downloadSelectedPayslips(selectedData);
+    } else {
+      toast.warn(`No payslips available.`);
+    }
+
     closeModal(); // Close the modal after selecting the months
+  };
+
+  const downloadSelectedPayslips = async (selectedData) => {
+    const zip = new JSZip();
+    for (const row of selectedData) {
+      if (row) {
+        const pdfBlob = await pdf(<MyPDF data={[row]} />).toBlob();
+        zip.file(`Payslip_${row[1]}_${row[2]}.pdf`, pdfBlob);
+      } else {
+        console.error("Row data is null or undefined", row);
+      }
+    }
+
+    const content = await zip.generateAsync({ type: "blob" });
+    saveAs(content, "selected_payslips.zip");
+    toast.success(`Payslips downloaded successfully.`);
   };
 
   // Custom MenuList for custom scrollbar
@@ -184,7 +209,7 @@ function Sidebar({ isOpen, onFilterChange, data }) {
             className={`mx-3 border-spacing-3 cursor-pointer rounded-[3px] border bg-slate-100 p-[6px] font-sans font-medium shadow-md`}
             onClick={openModal}
           >
-            <button>select</button>
+            <button>Select</button>
           </li>
         </ul>
 
