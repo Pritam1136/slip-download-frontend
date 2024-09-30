@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { motion, useAnimate } from "framer-motion";
 import "./textSpinner.css";
 import { useEffect } from "react";
 
-export default function TextSpinnerLoader() {
-  const text = "Welcome back. Have a nice day.";
+export default function TextSpinnerLoader({ message }) {
+  const text = message;
   const characters = text.split("");
 
   const radius = 120;
@@ -51,7 +52,7 @@ export default function TextSpinnerLoader() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        fontWeight:"bold"
+        fontWeight: "bold",
       }}
     >
       <motion.div ref={scope} className="circle" style={{ width: radius * 2 }}>
@@ -65,7 +66,6 @@ export default function TextSpinnerLoader() {
                 transformOrigin: `0 ${radius}px`,
                 transform: `rotate(${i * letterSpacing}deg)`,
                 fontSize,
-
               }}
             >
               {ch}

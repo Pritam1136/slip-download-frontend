@@ -124,7 +124,7 @@ function App() {
           alignItems: "center",
         }}
       >
-        <TextSpinnerLoader />
+        <TextSpinnerLoader message={"Gathering data from sheets."} />
       </div>
     );
   if (error)

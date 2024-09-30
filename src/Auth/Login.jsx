@@ -59,7 +59,7 @@ function Login() {
           alignItems: "center",
         }}
       >
-        <TextSpinnerLoader />
+        <TextSpinnerLoader message={"Welcome back. Have a nice day."} />
       </div>
     );
   }
