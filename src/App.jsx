@@ -12,7 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import TextSpinnerLoader from "./Components/TextSpinner/TextSpinner";
+import TextSpinnerLoader from "./components/TextSpinner/TextSpinner";
 
 function App() {
   const [data, setData] = useState([]);
