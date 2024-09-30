@@ -2,14 +2,14 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { url } from "../URL";
-import { motion } from "framer-motion";
+import TextSpinnerLoader from "../Components/TextSpinner/TextSpinner";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [step, setStep] = useState(1);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const sendOtp = async () => {
@@ -52,43 +52,9 @@ function Login() {
 
   if (loading) {
     return (
-      <div
-        style={{
-          height: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <motion.div
-          className="box"
-          animate={{
-            scale: [1, 1.5, 1.5, 1, 1],
-            rotate: [0, 0, 180, 180, 0],
-            borderRadius: [
-              "0%",
-              "10%",
-              "20%",
-              "30%",
-              "40%",
-              "50%",
-              "50%",
-              "40%",
-              "30%",
-              "20%",
-              "10%",
-              "0%",
-            ],
-          }}
-          transition={{
-            duration: 1.7,
-            ease: "circInOut",
-            times: [0, 0.2, 0.5, 0.8, 1],
-            repeat: Infinity,
-            repeatDelay: 0.5,
-          }}
-        />
-      </div>
+      <>
+        <TextSpinnerLoader />
+      </>
     );
   }
 
