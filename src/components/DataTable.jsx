@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
 import { useState } from "react";
@@ -12,7 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 
-const DataTable = ({ filteredData, setDownloadedRow }) => {
+const DataTable = ({ filteredData }) => {
   const [loadingIndex, setLoadingIndex] = useState(null);
   const [checkmarkIndex, setCheckmarkIndex] = useState(null);
 

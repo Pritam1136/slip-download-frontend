@@ -109,10 +109,7 @@ function App() {
           <h1 className="heading block text-center text-4xl font-black leading-9 tracking-tight text-[#a651eb] lg:hidden">
             SlipStream
           </h1>
-          <DataTable
-            filteredData={filteredData}
-            setDownloadedRow={setDownloadedRow}
-          />{" "}
+          <DataTable filteredData={filteredData} />{" "}
         </div>
       </div>
       <ToastContainer position="bottom-right" autoClose={3000} />
