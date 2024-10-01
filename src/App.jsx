@@ -1,7 +1,6 @@
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import MyPDF from "./PDF/MyPDF";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { url } from "./URL";
 import Header from "./components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,6 +12,7 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import TextSpinnerLoader from "./components/TextSpinner/TextSpinner";
+import LogoutButton from "./utility/Logout";
 
 function App() {
   const [data, setData] = useState([]);
@@ -20,8 +20,6 @@ function App() {
   const [error, setError] = useState(null);
   const [filteredData, setFilteredData] = useState([]);
   const [downloadedRow, setDownloadedRow] = useState(null); // Track downloaded row
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -54,11 +52,6 @@ function App() {
 
     fetchData();
   }, []);
-
-  const logout = () => {
-    localStorage.removeItem("authToken");
-    navigate("/login");
-  };
 
   const handleFilterChange = ({ year, financialYear }) => {
     if (financialYear) {
@@ -132,8 +125,8 @@ function App() {
       <div className="loadingText">
         {error}
         <div className="flex w-full justify-center pt-6 align-middle">
-          <button className="buttonDesign max-w-20" onClick={logout}>
-            Logout
+          <button className="buttonDesign max-w-20">
+            <LogoutButton />
           </button>
         </div>
       </div>
