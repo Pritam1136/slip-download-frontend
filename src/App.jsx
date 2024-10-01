@@ -5,7 +5,7 @@ import { url } from "./URL";
 import Header from "./components/Header";
 import TextSpinnerLoader from "./components/TextSpinner/TextSpinner";
 import LogoutButton from "./utility/Logout";
-import DataTable from "./Components/DataTable";
+import DataTable from "./components/DataTable";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
