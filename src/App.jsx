@@ -1,18 +1,13 @@
-import { PDFDownloadLink } from "@react-pdf/renderer";
-import MyPDF from "./PDF/MyPDF";
+/* eslint-disable no-unused-vars */
+
 import { useEffect, useState } from "react";
 import { url } from "./URL";
 import Header from "./components/Header";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowDownLong,
-  faSpinner,
-  faCheck,
-} from "@fortawesome/free-solid-svg-icons";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import TextSpinnerLoader from "./components/TextSpinner/TextSpinner";
 import LogoutButton from "./utility/Logout";
+import DataTable from "./Components/DataTable";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [data, setData] = useState([]);
@@ -82,32 +77,6 @@ function App() {
     }
   };
 
-  const handleDownload = (rowIndex, row) => {
-    return (
-      <PDFDownloadLink
-        document={<MyPDF data={[row]} />}
-        fileName={`PaySlip_${row[1]}_${row[2]}.pdf`}
-        onClick={() => {
-          setDownloadedRow(rowIndex);
-          toast.success(`Slip for ${row[1]} ${row[2]} downloaded!`);
-          setTimeout(() => setDownloadedRow(null), 5000);
-        }}
-      >
-        {({ loading }) =>
-          loading ? (
-            <FontAwesomeIcon icon={faSpinner} spin />
-          ) : downloadedRow === rowIndex ? (
-            <FontAwesomeIcon icon={faCheck} className="text-green-500" />
-          ) : (
-            <span className="hover:text-gray-500">
-              Download <FontAwesomeIcon icon={faArrowDownLong} />
-            </span>
-          )
-        }
-      </PDFDownloadLink>
-    );
-  };
-
   if (loading)
     return (
       <div
@@ -140,46 +109,10 @@ function App() {
           <h1 className="heading block text-center text-4xl font-black leading-9 tracking-tight text-[#a651eb] lg:hidden">
             SlipStream
           </h1>
-          <div className="mt-4 overflow-x-auto">
-            <table className="min-w-full border-collapse border border-gray-300">
-              <thead>
-                <tr className="bg-[#a651eb] text-white">
-                  <th className="tableHead">S.No</th>
-                  <th className="tableHead">Month</th>
-                  <th className="tableHead">Year</th>
-                  <th className="tableHead">Download</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredData.length > 0 ? (
-                  filteredData.map((row, rowIndex) => (
-                    <tr
-                      key={rowIndex}
-                      className={
-                        rowIndex % 2 === 0 ? "bg-[#f2edf7]" : "bg-white"
-                      }
-                    >
-                      <td className="tableData">{rowIndex + 1}</td>
-                      <td className="tableData">{row[1]}</td>
-                      <td className="tableData">{row[2]}</td>
-                      <td className="tableData">
-                        {handleDownload(rowIndex, row)}
-                      </td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td
-                      style={{ textAlign: "center", padding: "2px" }}
-                      colSpan="4"
-                    >
-                      No data matched.
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
+          <DataTable
+            filteredData={filteredData}
+            setDownloadedRow={setDownloadedRow}
+          />{" "}
         </div>
       </div>
       <ToastContainer position="bottom-right" autoClose={3000} />
