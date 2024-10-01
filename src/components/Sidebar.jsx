@@ -1,9 +1,5 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import JSZip from "jszip";
-import { saveAs } from "file-saver";
-import { pdf } from "@react-pdf/renderer";
-import MyPDF from "../PDF/MyPDF";
 import Select, { components } from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,14 +8,14 @@ import {
   faSun,
   faCheckCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
 import { useDarkMode } from "../context/DarkModeContext";
 import { toast } from "react-toastify";
 import Modal from "react-modal";
 import "react-toastify/dist/ReactToastify.css";
+import LogoutButton from "../utility/Logout";
+import downloadSelectedPayslips from "../utility/downloadSelectedPayslips";
 
 function Sidebar({ isOpen, onFilterChange, data }) {
-  const navigate = useNavigate();
   const { isDarkMode, toggleMode } = useDarkMode();
 
   const years = Array.from(
@@ -56,28 +52,7 @@ function Sidebar({ isOpen, onFilterChange, data }) {
   };
 
   const handleDownloadZip = async () => {
-    const zip = new JSZip();
-    if (data > 0) {
-      for (const row of data) {
-        if (row) {
-          const pdfBlob = await pdf(<MyPDF data={[row]} />).toBlob();
-          zip.file(`Payslip_${row[1]}_${row[2]}.pdf`, pdfBlob);
-        } else {
-          console.error("Row data is null or undefined", row);
-        }
-      }
-
-      const content = await zip.generateAsync({ type: "blob" });
-      saveAs(content, "payslips.zip");
-      toast.success(`payslip downloaded`);
-    } else {
-      toast.warn("No payslips available.");
-    }
-  };
-
-  const logout = () => {
-    localStorage.removeItem("authToken");
-    navigate("/login");
+    downloadSelectedPayslips(data);
   };
 
   // Open modal function
@@ -102,22 +77,6 @@ function Sidebar({ isOpen, onFilterChange, data }) {
     }
 
     closeModal(); // Close the modal after selecting the months
-  };
-
-  const downloadSelectedPayslips = async (selectedData) => {
-    const zip = new JSZip();
-    for (const row of selectedData) {
-      if (row) {
-        const pdfBlob = await pdf(<MyPDF data={[row]} />).toBlob();
-        zip.file(`Payslip_${row[1]}_${row[2]}.pdf`, pdfBlob);
-      } else {
-        console.error("Row data is null or undefined", row);
-      }
-    }
-
-    const content = await zip.generateAsync({ type: "blob" });
-    saveAs(content, "selected_payslips.zip");
-    toast.success(`Payslips downloaded successfully.`);
   };
 
   // Custom MenuList for custom scrollbar
@@ -220,10 +179,11 @@ function Sidebar({ isOpen, onFilterChange, data }) {
         <div className="mb-20 space-y-2">
           <div
             className={`mx-3 cursor-pointer rounded-md p-2 ${isDarkMode ? "hover:bg-gray-700" : "hover:bg-gray-100"} text-red-600`}
-            onClick={logout}
           >
             <FontAwesomeIcon icon={faRightFromBracket} />
-            <span className="ml-2">Logout</span>
+            <span className="ml-2">
+              <LogoutButton />
+            </span>
           </div>
           <div
             className={`mx-3 cursor-pointer rounded-md p-2 ${isDarkMode ? "hover:bg-gray-700" : "hover:bg-slate-100"} ${isDarkMode ? "text-white" : "text-black"}`}
