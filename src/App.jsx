@@ -51,8 +51,8 @@ function App() {
   const handleFilterChange = ({ year, financialYear }) => {
     if (financialYear) {
       const { start, end } = financialYear;
-      const filtered = data.slice(1).filter((row) => {
-        const rowYear = Number(row[2].trim());
+      const filtered = data.filter((row) => {
+        const rowYear = Number(row[2]);
         const rowMonth = row[1]?.trim().toLowerCase();
         return (
           (rowYear === start &&

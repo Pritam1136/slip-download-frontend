@@ -64,7 +64,7 @@ const DataTable = ({ filteredData }) => {
                 className={rowIndex % 2 === 0 ? "bg-[#f2edf7]" : "bg-white"}
               >
                 <td className="tableData">{rowIndex + 1}</td>
-                <td className="tableData">{row[1]}</td>
+                <td className="tableData">{row[1] ? row[1] : "Apr"}</td>
                 <td className="tableData">{row[2]}</td>
                 <td className="tableData">{handleDownload(rowIndex, row)}</td>
               </tr>
