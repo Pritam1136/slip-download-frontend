@@ -5,7 +5,7 @@ import { toWords } from "number-to-words";
 
 function OtherInfoPDF({ data }) {
   const [row] = data;
-  const netPay = row[17]; // Net Pay amount
+  const netPay = row[23]; // Net Pay amount
   const amountInWords = toWords(netPay); // Convert to words
 
   return (
@@ -15,7 +15,7 @@ function OtherInfoPDF({ data }) {
           <Text>Reimbursement</Text>
         </View>
         <View style={styles.tableCell}>
-          <Text>{row[16]}</Text>
+          <Text>{row[22]}</Text>
         </View>
       </View>
 
