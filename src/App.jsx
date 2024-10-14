@@ -72,7 +72,7 @@ function App() {
       });
       setFilteredData(filtered);
     } else if (year) {
-      const filtered = data.slice(1).filter((row) => row[2] === String(year));
+      const filtered = data.filter((row) => row[2] === String(year));
       setFilteredData(filtered);
     }
   };
