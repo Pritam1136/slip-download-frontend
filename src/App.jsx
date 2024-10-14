@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 import { useEffect, useState } from "react";
 import { url } from "./URL";
 import Header from "./components/Header";
@@ -14,7 +12,6 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [filteredData, setFilteredData] = useState([]);
-  const [downloadedRow, setDownloadedRow] = useState(null); // Track downloaded row
 
   useEffect(() => {
     async function fetchData() {
