@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { url } from "./URL";
-import Header from "./components/Header";
-import TextSpinnerLoader from "./components/TextSpinner/TextSpinner";
+import Header from "./Components/Header";
+import TextSpinnerLoader from "./Components/TextSpinner/TextSpinner";
 import LogoutButton from "./utility/Logout";
-import DataTable from "./components/DataTable";
+import DataTable from "./Components/DataTable";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -11,7 +11,7 @@ function App() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [filteredData, setFilteredData] = useState([]);
+  const [filteredData, setfilteredData] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -30,7 +30,7 @@ function App() {
 
         if (Array.isArray(result) && Array.isArray(result[0])) {
           setData(result);
-          setFilteredData(result.slice(1).filter((row) => row[2] === "2024"));
+          setfilteredData(result.slice(1).filter((row) => row[2] === "2024"));
         } else {
           throw new Error("Unexpected data format");
         }
@@ -67,10 +67,14 @@ function App() {
           (rowYear === end && ["jan", "feb", "mar"].includes(rowMonth))
         );
       });
-      setFilteredData(filtered);
+      setfilteredData(filtered);
     } else if (year) {
-      const filtered = data.filter((row) => row[2] === String(year));
-      setFilteredData(filtered);
+      const filtered = data.filter((row) => {
+        const rowYear = Number(row[2]);
+        return rowYear === Number(year);
+      });
+      console.log(filtered);
+      setfilteredData(filtered);
     }
   };
 
@@ -106,7 +110,7 @@ function App() {
           <h1 className="heading block text-center text-4xl font-black leading-9 tracking-tight text-[#a651eb] lg:hidden">
             SlipStream
           </h1>
-          <DataTable filteredData={filteredData} />{" "}
+          <DataTable filteredData={filteredData} />
         </div>
       </div>
       <ToastContainer position="bottom-right" autoClose={3000} />
