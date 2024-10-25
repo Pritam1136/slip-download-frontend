@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
+
+import { useState, useEffect, useRef } from "react";
 import Sidebar from "./Sidebar";
 import { Link } from "react-router-dom";
 import { useDarkMode } from "../context/DarkModeContext";
@@ -7,6 +8,7 @@ import { useDarkMode } from "../context/DarkModeContext";
 export default function Header({ onFilterChange, data }) {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const { isDarkMode } = useDarkMode();
+  const toggleButtonRef = useRef(null); // Ref for the toggle button
 
   useEffect(() => {
     const savedSidebarState = localStorage.getItem("isSidebarOpen");
@@ -43,6 +45,7 @@ export default function Header({ onFilterChange, data }) {
           </div>
           <div className="flex items-center lg:order-2">
             <button
+              ref={toggleButtonRef} // Add ref here
               data-collapse-toggle="mobile-menu-2"
               type="button"
               className="ml-1 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 lg:hidden"
@@ -52,7 +55,6 @@ export default function Header({ onFilterChange, data }) {
             >
               <span className="sr-only">Open main menu</span>
               {isSidebarOpen ? (
-                // Cross icon when sidebar is open
                 <svg
                   className="h-6 w-6 rotate-90 transform transition-transform duration-700"
                   fill="currentColor"
@@ -66,7 +68,6 @@ export default function Header({ onFilterChange, data }) {
                   ></path>
                 </svg>
               ) : (
-                // Hamburger icon when sidebar is closed
                 <svg
                   className="h-6 w-6 transform transition-transform duration-700"
                   fill="currentColor"
@@ -84,10 +85,13 @@ export default function Header({ onFilterChange, data }) {
           </div>
         </div>
       </nav>
+
       <Sidebar
         isOpen={isSidebarOpen}
         onFilterChange={onFilterChange}
         data={data}
+        setIsOpen={setSidebarOpen}
+        toggleButtonRef={toggleButtonRef} // Pass the ref to Sidebar
       />
     </header>
   );

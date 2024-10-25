@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Select, { components } from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,8 +15,31 @@ import "react-toastify/dist/ReactToastify.css";
 import LogoutButton from "../utility/Logout";
 import downloadSelectedPayslips from "../utility/downloadSelectedPayslips";
 
-function Sidebar({ isOpen, onFilterChange, data }) {
+function Sidebar({ isOpen, onFilterChange, data, setIsOpen, toggleButtonRef }) {
   const { isDarkMode, toggleMode } = useDarkMode();
+  const sidebarRef = useRef(null); // Reference for sidebar
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target) &&
+        toggleButtonRef.current &&
+        !toggleButtonRef.current.contains(event.target) // Check if clicked outside both sidebar and toggle button
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    // Attach the event listener when sidebar is open
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen, setIsOpen]);
 
   const years = Array.from(
     new Array(10),
@@ -66,17 +89,15 @@ function Sidebar({ isOpen, onFilterChange, data }) {
   };
 
   const handleMonthSelection = (count) => {
-    // Take the first 'count' rows from the data
     const selectedData = data.slice(0, count);
 
-    // Check if there is data to download
     if (selectedData.length > 0) {
       downloadSelectedPayslips(selectedData);
     } else {
       toast.warn(`No payslips available.`);
     }
 
-    closeModal(); // Close the modal after selecting the months
+    closeModal();
   };
 
   // Custom MenuList for custom scrollbar
@@ -96,18 +117,17 @@ function Sidebar({ isOpen, onFilterChange, data }) {
     </components.Option>
   );
 
-  // Custom styles for the Select components
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
-      borderColor: !isDarkMode && state.isFocused ? "#a651eb" : "#fff", // Change border color on focus in light mode
+      borderColor: !isDarkMode && state.isFocused ? "#a651eb" : "#fff",
       boxShadow:
         !isDarkMode && state.isFocused
           ? `0 0 0 1px #a651eb`
-          : provided.boxShadow, // Focus shadow only in light mode
+          : provided.boxShadow,
       "&:hover": {
         borderColor:
-          !isDarkMode && state.isFocused ? "#a651eb" : provided.borderColor, // Hover color for light mode when focused
+          !isDarkMode && state.isFocused ? "#a651eb" : provided.borderColor,
       },
     }),
     menuList: (provided) => ({
@@ -131,6 +151,7 @@ function Sidebar({ isOpen, onFilterChange, data }) {
 
   return (
     <div
+      ref={sidebarRef}
       className={`sidebar fixed left-0 mt-[2px] h-full w-64 bg-[#fff] p-4 shadow-xl transition-transform duration-700 ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       } lg:block lg:translate-x-0`}
@@ -231,9 +252,9 @@ function Sidebar({ isOpen, onFilterChange, data }) {
           </div>
           <button
             onClick={closeModal}
-            className="w-full rounded bg-gray-300 px-4 py-2 text-gray-800 transition duration-200 hover:bg-gray-400"
+            className="rounded bg-gray-500 px-4 py-2 text-white transition duration-200 hover:bg-gray-600"
           >
-            Close
+            Cancel
           </button>
         </div>
       </Modal>
