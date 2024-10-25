@@ -73,7 +73,6 @@ function App() {
         const rowYear = Number(row[2]);
         return rowYear === Number(year);
       });
-      console.log(filtered);
       setfilteredData(filtered);
     }
   };
